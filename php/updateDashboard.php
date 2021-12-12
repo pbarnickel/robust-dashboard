@@ -11,4 +11,4 @@ require_once('php/API/RequestAPI.php');
 require_once('php/API/DatabaseAPI.php');
 
 $oMain = new Main();
-$oMain->updateRobustBurnHistory();
+$oMain->runDailyScript();
