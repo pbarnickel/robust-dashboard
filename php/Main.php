@@ -33,8 +33,13 @@ class Main implements Constants
 
         $this->initRobustBurnHistory();
         $this->initCurrentSituation();
-        //$this->updateRobustBurnHistory();
         $this->printRobustBurnHistory();
+    }
+
+    public function runDailyScript()
+    {
+        $this->initRobustBurnHistory();
+        $this->updateRobustBurnHistory();
     }
 
     public function initRobustBurnHistory()
