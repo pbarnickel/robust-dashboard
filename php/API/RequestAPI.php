@@ -28,6 +28,6 @@ class RequestAPI extends BaseAPI
 
         curl_close($oCurl);
 
-        return $sResult + "4950.00";
+        return $sResult;
     }
 }
