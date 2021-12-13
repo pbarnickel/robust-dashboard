@@ -94,7 +94,7 @@ class Main implements Constants
     public function runMigrationScript()
     {
 
-        $sJsonFileContents = file_get_contents("js/robustBurnHistory.json");
+        $sJsonFileContents = file_get_contents(Constants::JSON_ROBUST_BURNED_HISTORY_URL);
         $aHistory = json_decode($sJsonFileContents, true);
 
         $iLen = sizeof($aHistory);
