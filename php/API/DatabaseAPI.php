@@ -50,7 +50,7 @@ class DatabaseAPI extends BaseAPI
 
         $this->openConnection();
 
-        $sDate = date('m.d.Y');
+        $sDate = date('d.m.Y');
 
         $sTotalRobustBurned = RequestAPI::getTotalBurned();
         $dTotalRobustBurned = bcadd($sTotalRobustBurned, '0', 2);
