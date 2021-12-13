@@ -73,7 +73,7 @@ class Main implements Constants
         }
         $dDifferenceBurned = bcadd($dDifferenceBurned, '0', 2);
 
-        $this->oCurrentSituation = new RobustBurnHistoryEntry(NULL, 'Current Situation', $dCurrentBurned, $dDifferenceBurned);
+        $this->oCurrentSituation = new RobustBurnHistoryEntry(NULL, date('d.m.Y'), $dCurrentBurned, $dDifferenceBurned);
     }
 
     public function printRobustBurnHistory()

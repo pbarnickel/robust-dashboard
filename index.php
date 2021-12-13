@@ -26,6 +26,7 @@
             </div>
         </div>
         <div class="bg-light p-5 rounded">
+            <h1 class="display-6">Daily RBT Burn History</h1><br />
             <?php
             include('php/loadDashboard.php');
             ?>
