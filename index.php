@@ -21,7 +21,7 @@
     <main class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">Welcome to Robust Dashboard</h1>
+                <h1 class="display-4">Robust Dashboard (UTC)</h1>
                 <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
             </div>
         </div>

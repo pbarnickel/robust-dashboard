@@ -11,6 +11,7 @@ namespace BPS\RobustDashboard\API;
 
 use BPS\RobustDashboard\Constants;
 use BPS\RobustDashboard\API\RequestAPI;
+use BPS\RobustDashboard\Model\RobustBurnHistory;
 use BPS\RobustDashboard\Model\RobustBurnHistoryEntry;
 use mysqli;
 
@@ -54,7 +55,7 @@ class DatabaseAPI extends BaseAPI
         $sTotalRobustBurned = RequestAPI::getTotalBurned();
         $dTotalRobustBurned = bcadd($sTotalRobustBurned, '0', 2);
 
-        if($oLastEntry){
+        if ($oLastEntry) {
             $dLastBurned = bcadd($oLastEntry->getTotalBurned(), '0', 2);
             $dDifferenceBurned = $dTotalRobustBurned - $dLastBurned;
         } else {
@@ -75,5 +76,24 @@ class DatabaseAPI extends BaseAPI
         $this->closeConnection();
 
         return $oNewEntry;
+    }
+
+    public function migrateRobustBurnHistory(RobustBurnHistory $oRobustBurnHistory)
+    {
+
+        $this->openConnection();
+
+        $iLen = $oRobustBurnHistory->getSize();
+        $aEntries = $oRobustBurnHistory->getEntries();
+        for ($i = 0; $i < $iLen; $i++) {
+
+            $oEntry = $aEntries[$i];
+
+            $sQuery = Constants::DB_QRY_INSERT_ROBUST_BURNED_HISTORY . ' ("' . $oEntry->getDate() . '", ' . $oEntry->getTotalBurned() . ', ' . $oEntry->getDifferenceBurned() . ')';
+
+            $this->oConnection->query($sQuery);
+        }
+
+        $this->closeConnection();
     }
 }

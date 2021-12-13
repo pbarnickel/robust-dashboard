@@ -74,7 +74,6 @@ class Main implements Constants
         $dDifferenceBurned = bcadd($dDifferenceBurned, '0', 2);
 
         $this->oCurrentSituation = new RobustBurnHistoryEntry(NULL, 'Current Situation', $dCurrentBurned, $dDifferenceBurned);
-
     }
 
     public function printRobustBurnHistory()
@@ -90,5 +89,23 @@ class Main implements Constants
         if ($newEntry) {
             $this->oRobustBurnHistory->addNewEntry($newEntry);
         }
+    }
+
+    public function runMigrationScript()
+    {
+
+        $sJsonFileContents = file_get_contents("js/robustBurnHistory.json");
+        $aHistory = json_decode($sJsonFileContents, true);
+
+        $iLen = sizeof($aHistory);
+        $dTotalBurned = "4950.00";
+        for($i = 0; $i < $iLen; $i++){
+            $dTotalBurned =  bcadd($dTotalBurned, '0', 2) + bcadd($aHistory[$i]["Amount"], '0', 2);
+            $oEntry = new RobustBurnHistoryEntry(NULL, $aHistory[$i]["Day"], $dTotalBurned, $aHistory[$i]["Amount"]);
+            $this->oRobustBurnHistory->addEntry($oEntry);
+        }
+
+        $this->oDatabaseAPI->migrateRobustBurnHistory($this->oRobustBurnHistory);
+
     }
 }
