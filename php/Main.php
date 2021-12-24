@@ -34,6 +34,7 @@ class Main implements Constants
         $this->initRobustBurnHistory();
         $this->initCurrentSituation();
         $this->printRobustBurnHistory();
+        $this->initRobustBurnHistoryChart();
     }
 
     public function runDailyScript()
@@ -99,13 +100,23 @@ class Main implements Constants
 
         $iLen = sizeof($aHistory);
         $dTotalBurned = "4950.00";
-        for($i = 0; $i < $iLen; $i++){
+        for ($i = 0; $i < $iLen; $i++) {
             $dTotalBurned =  bcadd($dTotalBurned, '0', 2) + bcadd($aHistory[$i]["Amount"], '0', 2);
             $oEntry = new RobustBurnHistoryEntry(NULL, $aHistory[$i]["Day"], $dTotalBurned, $aHistory[$i]["Amount"]);
             $this->oRobustBurnHistory->addEntry($oEntry);
         }
 
         $this->oDatabaseAPI->migrateRobustBurnHistory($this->oRobustBurnHistory);
+    }
 
+    public function initRobustBurnHistoryChart()
+    {
+        $aHistory = $this->oRobustBurnHistory->getEntries();
+        $oJSON = json_encode($aHistory);
+        if (file_put_contents("js/data.json", $oJSON)) {
+            //Success
+        } else {
+            //Error
+        }
     }
 }

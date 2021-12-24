@@ -9,7 +9,7 @@
 
 namespace BPS\RobustDashboard\Model;
 
-class RobustBurnHistoryEntry
+class RobustBurnHistoryEntry implements \JsonSerializable
 {
 
     protected $sID;
@@ -58,5 +58,14 @@ class RobustBurnHistoryEntry
     public function setDifferenceBurned($dDifferenceBurned)
     {
         $this->dDifferenceBurned = $dDifferenceBurned;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'Date' => $this->getDate(),
+            'Burned' => $this->getDifferenceBurned(),
+            'Total' => $this->getTotalBurned()
+        ];
     }
 }

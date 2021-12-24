@@ -8,6 +8,9 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -27,6 +30,12 @@
         </div>
         <div class="bg-light p-5 rounded">
             <h1 class="display-6">Daily RBT Burn History</h1><br />
+            <h5>Daily RBT Burned</h2>
+            <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+            <div id="chart_1"></div>
+            <h5>Total RBT Burned</h2>
+            <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+            <div id="chart_2"></div>
             <?php
             include('php/loadDashboard.php');
             ?>
@@ -43,7 +52,10 @@
         </div>
     </footer>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/data.json"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>
