@@ -35,20 +35,3 @@ footer a:hover {
     text-decoration: none;
     transition: all 1s;
 }
-
-.area {
-    fill: none;
-    stroke: #a2dced;
-    stroke-width: 2;
-    clip-path: url(#clip);
-}
-
-.zoom {
-    cursor: move;
-    fill: none;
-    pointer-events: all;
-}
-
-rect.selection {
-    fill: green;
-}
