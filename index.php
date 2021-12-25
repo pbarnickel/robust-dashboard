@@ -27,15 +27,15 @@
         </div>
         <div class="bg-light p-5 rounded">
             <h1 class="display-6">Daily RBT Burn History</h1><br />
-            <h5>Daily RBT Burned</h2>
-                <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-                <div id="chart_1"></div>
-                <h5>Total RBT Burned</h2>
-                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-                    <div id="chart_2"></div>
-                    <?php
-                    include('php/loadDashboard.php');
-                    ?>
+            <h5>Daily RBT Burned</h5>
+            <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+            <div id="chart_1"></div>
+            <h5>Total RBT Burned</h5>
+            <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+            <div id="chart_2"></div>
+            <?php
+            include('php/loadDashboard.php');
+            ?>
         </div>
     </main>
 
