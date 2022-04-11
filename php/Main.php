@@ -112,6 +112,7 @@ class Main implements Constants
     public function initRobustBurnHistoryChart()
     {
         $aHistory = $this->oRobustBurnHistory->getEntries();
+        array_unshift($aHistory, $this->oCurrentSituation);
         $oJSON = json_encode($aHistory);
         if (file_put_contents("js/data.json", $oJSON)) {
             //Success
