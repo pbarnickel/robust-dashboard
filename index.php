@@ -26,16 +26,48 @@
             </div>
         </div>
         <div class="bg-light p-5 rounded">
+
             <h1 class="display-6">Daily RBT Burn History</h1><br />
-            <h5>Daily RBT Burned</h5>
-            <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-            <div id="chart_1"></div>
-            <h5>Total RBT Burned</h5>
-            <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-            <div id="chart_2"></div>
-            <?php
-            include('php/loadDashboard.php');
-            ?>
+            <p>
+                <button id="btnTable" class="btn btn-dark w-100" onclick="onClickTable()" data-bs-toggle="collapse" href="#collapseTable" role="button" aria-expanded="false" aria-controls="collapseTable">
+                    Daily RBT Burned - Table
+                </button>
+                <button id="btnChart1" class="btn btn-secondary w-100" onclick="onClickChart1()" data-bs-toggle="collapse" href="#collapseChart1" role="button" aria-expanded="false" aria-controls="collapseChart1">
+                    Daily RBT Burned - Graph
+                </button>
+                <button id="btnChart3" class="btn btn-secondary w-100" onclick="onClickChart3()" data-bs-toggle="collapse" href="#collapseChart3" role="button" aria-expanded="false" aria-controls="collapseChart3">
+                    Daily RBT Burned - Graph
+                </button>
+                <button id="btnChart2" class="btn btn-secondary w-100" onclick="onClickChart2()" data-bs-toggle="collapse" href="#collapseChart2" role="button" aria-expanded="false" aria-controls="collapseChart2">
+                    Total RBT Burned - Graph
+                </button>
+
+            </p>
+            <div class="collapse" id="collapseTable">
+                <div class="card card-body">
+                    <?php
+                    include('php/loadDashboard.php');
+                    ?>
+                </div>
+            </div>
+            <div class="collapse" id="collapseChart1">
+                <div class="card card-body">
+                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+                    <div id="chart_1"></div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseChart2">
+                <div class="card card-body">
+                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+                    <div id="chart_2"></div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseChart3">
+                <div class="card card-body">
+                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
+                    <div id="chart_3"></div>
+                </div>
+            </div>
         </div>
     </main>
 
