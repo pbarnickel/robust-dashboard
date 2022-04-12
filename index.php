@@ -29,21 +29,34 @@
         <div class="bg-light p-5 rounded">
 
             <h1 class="display-6">Daily RBT Burn History</h1><br />
-            <p>
-                <button id="btnTable" class="btn btn-dark w-100" onclick="onClickTable()" data-bs-toggle="collapse" href="#collapseTable" role="button" aria-expanded="false" aria-controls="collapseTable">
-                    Daily RBT Burned - Table
-                </button>
-                <button id="btnChart1" class="btn btn-secondary w-100" onclick="onClickChart1()" data-bs-toggle="collapse" href="#collapseChart1" role="button" aria-expanded="false" aria-controls="collapseChart1">
-                    Daily RBT Burned - Graph
-                </button>
-                <button id="btnChart3" class="btn btn-secondary w-100" onclick="onClickChart3()" data-bs-toggle="collapse" href="#collapseChart3" role="button" aria-expanded="false" aria-controls="collapseChart3">
-                    Daily RBT Burned - Graph
-                </button>
-                <button id="btnChart2" class="btn btn-secondary w-100" onclick="onClickChart2()" data-bs-toggle="collapse" href="#collapseChart2" role="button" aria-expanded="false" aria-controls="collapseChart2">
-                    Total RBT Burned - Graph
-                </button>
-
-            </p>
+            <div class="container">
+                <div class="row">
+                    <button id="btnTable" class="btn btn-dark col-sm" onclick="onClickTable()" data-bs-toggle="collapse" href="#collapseTable" role="button" aria-expanded="false" aria-controls="collapseTable">
+                        Daily RBT Burned - Table
+                    </button>
+                </div>
+                <div class="row">
+                    <button id="btnChart1" class="btn btn-secondary col-sm" onclick="onClickChart1()" data-bs-toggle="collapse" href="#collapseChart1" role="button" aria-expanded="false" aria-controls="collapseChart1">
+                        Daily RBT Burned - Graph
+                    </button>
+                    <button id="btnChart3" class="btn btn-secondary col-sm" onclick="onClickChart3()" data-bs-toggle="collapse" href="#collapseChart3" role="button" aria-expanded="false" aria-controls="collapseChart3">
+                        Daily RBT Burned - Graph
+                    </button>
+                </div>
+                <div class="row">
+                    <button id="btnChart4" class="btn btn-secondary col-sm" onclick="onClickChart4()" data-bs-toggle="collapse" href="#collapseChart4" role="button" aria-expanded="false" aria-controls="collapseChart4">
+                        Monthly RBT Burned - Graph
+                    </button>
+                    <button id="btnChart5" class="btn btn-secondary col-sm" onclick="onClickChart5()" data-bs-toggle="collapse" href="#collapseChart5" role="button" aria-expanded="false" aria-controls="collapseChart5">
+                        Monthly RBT Burned - Graph
+                    </button>
+                </div>
+                <div class="row">
+                    <button id="btnChart2" class="btn btn-secondary col-sm" onclick="onClickChart2()" data-bs-toggle="collapse" href="#collapseChart2" role="button" aria-expanded="false" aria-controls="collapseChart2">
+                        Total RBT Burned - Graph
+                    </button>
+                </div>
+            </div>
             <div class="collapse" id="collapseTable">
                 <div class="card card-body">
                     <?php
@@ -64,6 +77,16 @@
             <div class="collapse" id="collapseChart3">
                 <div class="card card-body">
                     <canvas id="idChartBurnHistoryCurrentYear"></canvas>
+                </div>
+            </div>
+            <div class="collapse" id="collapseChart4">
+                <div class="card card-body">
+                    <canvas id="idChartBurnHistoryMonthly"></canvas>
+                </div>
+            </div>
+            <div class="collapse" id="collapseChart5">
+                <div class="card card-body">
+                    <canvas id="idChartBurnHistoryMonthlyCurrentYear"></canvas>
                 </div>
             </div>
         </div>
