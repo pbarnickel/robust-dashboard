@@ -25,6 +25,7 @@
                 <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
             </div>
         </div>
+
         <div class="bg-light p-5 rounded">
 
             <h1 class="display-6">Daily RBT Burn History</h1><br />
@@ -52,20 +53,17 @@
             </div>
             <div class="collapse" id="collapseChart1">
                 <div class="card card-body">
-                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-                    <div id="chart_1"></div>
+                    <canvas id="idChartBurnHistory"></canvas>
                 </div>
             </div>
             <div class="collapse" id="collapseChart2">
                 <div class="card card-body">
-                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-                    <div id="chart_2"></div>
+                    <canvas id="idChartTotalBurnHistory"></canvas>
                 </div>
             </div>
             <div class="collapse" id="collapseChart3">
                 <div class="card card-body">
-                    <p>Select a target area to take a closer look at it. Double-click on the chart to return to the standard view.</p><br />
-                    <div id="chart_3"></div>
+                    <canvas id="idChartBurnHistoryCurrentYear"></canvas>
                 </div>
             </div>
         </div>
@@ -83,7 +81,7 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/d3.v4.min.js"></script>
+    <script src="/js/chart.js"></script>
     <script src="/js/data.json"></script>
     <script src="/js/main.js"></script>
 </body>
