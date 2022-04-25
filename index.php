@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Robust Dashboard</a>
+            <a class="navbar-brand" href="index.php">Robust Dashboard</a>
         </div>
     </nav>
 
@@ -98,6 +98,8 @@
                 <a target="_blank" href="https://robustprotocol.fi/">Robust Protocol</a>
                 -
                 <a target="_blank" href="https://robustswap.com/">Robust Swap</a>
+                -
+                <a href="impressum.php">Impressum</a>
             </p>
         </div>
     </footer>
