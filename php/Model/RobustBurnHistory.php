@@ -9,7 +9,9 @@
 
 namespace BPS\RobustDashboard\Model;
 
-class RobustBurnHistory
+use BPS\RobustDashboard\Constants;
+
+class RobustBurnHistory implements Constants
 {
 
     protected $aEntries;
@@ -57,14 +59,20 @@ class RobustBurnHistory
 
     public function getHTML(RobustBurnHistoryEntry $oCurrentSituation){
 
-        $sOutput = '<table class="table"><thead><tr class="table-dark"><th scope="col">Date</th><th scope="col">RBT Burned Total</th><th scope="col">Difference</th></tr></thead><tbody>';
-        $sOutput = $sOutput . '<tr class="table-primary"><th scope="row">' . $oCurrentSituation->getDate() . '</th><td>' . $oCurrentSituation->getTotalBurned() . '</td><td>' . $oCurrentSituation->getDifferenceBurned() . '</td></tr>';
+        $sOutput = '<table class="table"><thead><tr class="table-dark"><th scope="col">Date</th><th scope="col">RBT Burned Total</th><th scope="col">RBT Burned at Day</th><th scope="col">RBT Current Supply</th><th scope="col">RBT Available Supply</th></tr></thead><tbody>';
+        $sCurrentSupply = Constants::RBT_INIT_TOTAL_SUPPLY - $oCurrentSituation->getTotalBurned();
+        $sAvailableSupply = $sCurrentSupply - Constants::RBT_LOCKED_SUPPLY;
+        $sOutput = $sOutput . '<tr class="table-primary"><th scope="row">' . $oCurrentSituation->getDate() . '</th><td>' . $oCurrentSituation->getTotalBurned() . '</td><td>' . $oCurrentSituation->getDifferenceBurned() . '</td><td>'. $sCurrentSupply . '<td>' . $sAvailableSupply . '</td></tr>';
         $iLen = $this->getSize();
         for ($i = 0; $i < $iLen; $i++) {
             $oEntry = $this->aEntries[$i];
             $sOutput = $sOutput . '<tr><th scope="row">' . $oEntry->getDate() . '</th>';
             $sOutput = $sOutput . '<td>' . $oEntry->getTotalBurned() . '</td>';
-            $sOutput = $sOutput . '<td>' . $oEntry->getDifferenceBurned() . '</td></tr>';
+            $sOutput = $sOutput . '<td>' . $oEntry->getDifferenceBurned() . '</td>';
+            $sCurrentSupply = Constants::RBT_INIT_TOTAL_SUPPLY - $oEntry->getTotalBurned();
+            $sOutput = $sOutput . '<td>' . $sCurrentSupply . '</td>';
+            $sAvailableSupply = $sCurrentSupply - Constants::RBT_LOCKED_SUPPLY;
+            $sOutput = $sOutput . '<td>' . $sAvailableSupply . '</td></tr>';
         }
 
         $sOutput = $sOutput . '</tbody></table>';
