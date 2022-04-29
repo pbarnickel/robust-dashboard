@@ -1,15 +1,17 @@
+const RBT_INIT_TOTAL_SUPPLY = 100000;
+const RBT_LOCKED_SUPPLY = 50000;
+const RBT_MANUALLY_BURN = 4950;
+
+function p(sText) {
+    console.log(sText);
+}
+
 $(document).ready(function () {
 
     feather.replace();
     initHeadlines();
-
-    aHistoryData = $.getJSON("/js/data.json", function (oJSON) {
-        initChartBurnHistory(oJSON);
-        initChartBurnHistoryCurrentYear(oJSON);
-        initChartTotalBurnHistory(oJSON);
-        initChartBurnHistoryMonthly(oJSON);
-        initChartBurnHistoryMonthlyCurrentYear(oJSON);
-    });
+    initCharts();
+    
 });
 
 $('.bpsMenuItem').click(function() {
@@ -18,19 +20,36 @@ $('.bpsMenuItem').click(function() {
     $(oTarget).show();
 });
 
+function initMenuCards(oData){
+    var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.Total;
+    var iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
+    $('#bpsRbtTotalBurned').html(parseFloat(oData.Total).toLocaleString());
+    $('#bpsRbtCurrentSupply').html(iCurrentSupply.toLocaleString());
+    $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString());
+}
+
+function initCharts(){
+    aHistoryData = $.getJSON("/js/data.json", function (oJSON) {
+        initChartBurnHistory(oJSON);
+        initChartBurnHistoryCurrentYear(oJSON);
+        initChartTotalBurnHistory(oJSON);
+        initChartBurnHistoryMonthly(oJSON);
+        initChartBurnHistoryMonthlyCurrentYear(oJSON);
+        initChartSupply(oJSON);
+
+        initMenuCards(oJSON[0]);
+    });
+}
+
 function initHeadlines(){
     var iCurrentYear = new Date().getFullYear();
-    $('#bpsHdlC3').html('RBT Burned Daily for ' + iCurrentYear);
-    $('#bpsMenuItemC3').html(feather.icons['trending-up'].toSvg() + ' RBT Burned Monthly ' + iCurrentYear);
-    $('#bpsHdlC5').html('RBT Burned Monthly for ' + iCurrentYear);
+    $('#bpsHdlC3').html('RBT Burned Daily ' + iCurrentYear);
+    $('#bpsMenuItemC3').html(feather.icons['trending-up'].toSvg() + ' RBT Burned Daily ' + iCurrentYear);
+    $('#bpsHdlC5').html('RBT Burned Monthly ' + iCurrentYear);
     $('#bpsMenuItemC5').html(feather.icons['trending-up'].toSvg() + ' RBT Burned Monthly ' + iCurrentYear);
 }
 
-function p(sText) {
-    console.log(sText);
-}
-
-// chart 1
+// chart 1 - RBT burned daily
 function initChartBurnHistory(oJSON) {
 
     var aData = [];
@@ -69,7 +88,46 @@ function initChartBurnHistory(oJSON) {
     );
 }
 
-// chart 3
+// chart 2 - RBT burned total
+function initChartTotalBurnHistory(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        aData.push({
+            x: oJSON[i].Date,
+            y: oJSON[i].Total
+        });
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBT Burned',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartTotalBurnHistory = new Chart(
+        document.getElementById('idChartTotalBurnHistory'),
+        config
+    );
+}
+
+// chart 3 - RBT burned daily (current year)
 function initChartBurnHistoryCurrentYear(oJSON) {
 
     var aData = [];
@@ -111,47 +169,7 @@ function initChartBurnHistoryCurrentYear(oJSON) {
     );
 }
 
-
-// chart 2
-function initChartTotalBurnHistory(oJSON) {
-
-    var aData = [];
-
-    for (var i = oJSON.length - 1; i > -1; i--) {
-        aData.push({
-            x: oJSON[i].Date,
-            y: oJSON[i].Total
-        });
-    }
-
-    const data = {
-        datasets: [{
-            label: 'RBT Burned',
-            backgroundColor: 'rgb(150, 150, 255)',
-            borderColor: 'rgb(150, 150, 255)',
-            data: aData
-        }]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    };
-
-    const oChartTotalBurnHistory = new Chart(
-        document.getElementById('idChartTotalBurnHistory'),
-        config
-    );
-}
-
-// chart 4
+// chart 4 - RBT burned monthly
 function initChartBurnHistoryMonthly(oJSON) {
 
     var aData = [];
@@ -205,7 +223,7 @@ function initChartBurnHistoryMonthly(oJSON) {
     );
 }
 
-// chart 5
+// chart 5 - RBT burned monthly (current year)
 function initChartBurnHistoryMonthlyCurrentYear(oJSON) {
 
     var aData = [];
@@ -259,6 +277,69 @@ function initChartBurnHistoryMonthlyCurrentYear(oJSON) {
 
     const oChartBurnHistoryMonthlyCurrentYear = new Chart(
         document.getElementById('idChartBurnHistoryMonthlyCurrentYear'),
+        config
+    );
+}
+
+// chart 6 - RBT supply
+function initChartSupply(oJSON) {
+
+    var aDataCurrent = [];
+    var aDataAvailable = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+
+        aDataCurrent.push({
+            x: oJSON[i].Date,
+            y: RBT_INIT_TOTAL_SUPPLY - RBT_MANUALLY_BURN - oJSON[i].Total
+        });
+
+        aDataAvailable.push({
+            x: oJSON[i].Date,
+            y: RBT_INIT_TOTAL_SUPPLY - RBT_LOCKED_SUPPLY - RBT_MANUALLY_BURN - oJSON[i].Total
+        });
+    }
+
+    iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oJSON[0].Total;
+    iAvailableSupply = RBT_INIT_TOTAL_SUPPLY - RBT_LOCKED_SUPPLY - oJSON[0].Total;
+
+    sLabelCS = 'RBT Current Supply: ' + iCurrentSupply.toLocaleString() + ' RBT';
+    sLabelAS = 'RBT Available Supply: ' + iAvailableSupply.toLocaleString() + ' RBT';
+
+    const data = {
+        datasets: [{
+            label: sLabelCS,
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aDataCurrent
+        }, {
+            label: sLabelAS,
+            backgroundColor: 'rgb(50, 50, 255)',
+            borderColor: 'rgb(50, 50, 255)',
+            data: aDataAvailable
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 100000,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    };
+
+    const oChartSupply = new Chart(
+        document.getElementById('idChartSupply'),
         config
     );
 }

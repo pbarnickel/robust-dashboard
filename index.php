@@ -24,13 +24,32 @@
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
-
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bpsSidebarHdl">
-                        <img class="bpsMenuHdlIcon" src="/media/RBT.svg" />
-                        <span>
-                            RBT
-                        </span>
-                    </h6>
+                    <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBT" role="button" aria-expanded="true" aria-controls="collapseRBT">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bpsSidebarHdl">
+                            <img class="bpsMenuHdlIcon" src="/media/RBT.svg" />
+                            <span>
+                                RBT
+                            </span>
+                        </h6>
+                    </a>
+                    <div class="collapse show" id="collapseRBT">
+                        <div id="bpsMenuCardRBT" class="card card-body bpsMenuCard">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td class="align-middle">Total Burned</td>
+                                    <td id="bpsRbtTotalBurned" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Current Supply</td>
+                                    <td id="bpsRbtCurrentSupply" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Available Supply</td>
+                                    <td id="bpsRbtAvailableSupply" class="align-middle"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
                             <a id="bpsMenuItemT1" class="bpsMenuItem nav-link" data-target="bpsT1">
@@ -68,17 +87,38 @@
                                 RBT Burned Total
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemC6" class="bpsMenuItem nav-link" data-target="bpsC6">
+                                <span data-feather="trending-up"></span>
+                                RBT Supply
+                            </a>
+                        </li>
                     </ul>
+
+                    <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBS" role="button" aria-expanded="true" aria-controls="collapseRBS">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bpsSidebarHdl">
+                            <img class="bpsMenuHdlIcon" src="/media/RBS.svg" />
+                            <span>
+                                RBS
+                            </span>
+                        </h6>
+                    </a>
+                    <div class="collapse show" id="collapseRBS">
+                        <div id="bpsMenuCardRBS" class="card card-body bpsMenuCard">
+                            Coming soon
+                        </div>
+                    </div>
                 </div>
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                     <div id="content" class="container">
                         <div id="bpsT1" class="bpsTarget">
                             <h1 id="bpsHdlT1" class="h2">RBT Burned Daily</h1>
+                            <p>This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
                             <?php
-                                include('php/loadDashboard.php');
+                            include('php/loadDashboard.php');
                             ?>
                         </div>
                         <div id="bpsC1" class="bpsTarget bpsHidden">
@@ -101,83 +141,15 @@
                             <h1 id="bpsHdlC2" class="h2">RBT Burned Total</h1>
                             <canvas id="idChartTotalBurnHistory"></canvas>
                         </div>
+                        <div id="bpsC6" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlC6" class="h2">RBT Supply</h1>
+                            <canvas id="idChartSupply"></canvas>
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-
-    <!--main class="container">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Robust Dashboard (UTC)</h1>
-                <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
-            </div>
-        </div>
-
-        <div class="bg-light p-5 rounded">
-
-            <h1 class="display-6">Daily RBT Burn History</h1><br />
-            <div class="container">
-                <div class="row">
-                    <button id="btnTable" class="btn btn-dark col-sm" onclick="onClickTable()" data-bs-toggle="collapse" href="#collapseTable" role="button" aria-expanded="false" aria-controls="collapseTable">
-                        Daily RBT Burned - Table
-                    </button>
-                </div>
-                <div class="row">
-                    <button id="btnChart1" class="btn btn-secondary col-sm" onclick="onClickChart1()" data-bs-toggle="collapse" href="#collapseChart1" role="button" aria-expanded="false" aria-controls="collapseChart1">
-                        Daily RBT Burned - Graph
-                    </button>
-                    <button id="btnChart3" class="btn btn-secondary col-sm" onclick="onClickChart3()" data-bs-toggle="collapse" href="#collapseChart3" role="button" aria-expanded="false" aria-controls="collapseChart3">
-                        Daily RBT Burned - Graph
-                    </button>
-                </div>
-                <div class="row">
-                    <button id="btnChart4" class="btn btn-secondary col-sm" onclick="onClickChart4()" data-bs-toggle="collapse" href="#collapseChart4" role="button" aria-expanded="false" aria-controls="collapseChart4">
-                        Monthly RBT Burned - Graph
-                    </button>
-                    <button id="btnChart5" class="btn btn-secondary col-sm" onclick="onClickChart5()" data-bs-toggle="collapse" href="#collapseChart5" role="button" aria-expanded="false" aria-controls="collapseChart5">
-                        Monthly RBT Burned - Graph
-                    </button>
-                </div>
-                <div class="row">
-                    <button id="btnChart2" class="btn btn-secondary col-sm" onclick="onClickChart2()" data-bs-toggle="collapse" href="#collapseChart2" role="button" aria-expanded="false" aria-controls="collapseChart2">
-                        Total RBT Burned - Graph
-                    </button>
-                </div>
-            </div>
-            <div class="collapse" id="collapseTable">
-                <div class="card card-body">
-                    
-                </div>
-            </div>
-            <div class="collapse" id="collapseChart1">
-                <div class="card card-body">
-                    
-                </div>
-            </div>
-            <div class="collapse" id="collapseChart2">
-                <div class="card card-body">
-                    
-                </div>
-            </div>
-            <div class="collapse" id="collapseChart3">
-                <div class="card card-body">
-                    
-                </div>
-            </div>
-            <div class="collapse" id="collapseChart4">
-                <div class="card card-body">
-                    
-                </div>
-            </div>
-            <div class="collapse" id="collapseChart5">
-                <div class="card card-body">
-                    
-                </div>
-            </div>
-        </div>
-    </main-->
 
     <footer class="page-footer">
         <div class="container-fluid text-center text-md-left">

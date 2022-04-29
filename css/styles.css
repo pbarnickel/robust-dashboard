@@ -62,6 +62,7 @@ footer a:hover {
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(50, 50, 50, 0.1);
     font-size: 16px;
+    margin-bottom: 0px !important;
 }
 
 .bpsMenuHdlIcon {
@@ -85,4 +86,20 @@ footer a:hover {
     margin-bottom: 25px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(50, 50, 50, 0.1);
+}
+
+.bpsBtnMenuHdl {
+    text-decoration: none;
+}
+
+.bpsMenuCard {
+    border-radius: 0;
+}
+
+#bpsMenuCardRBT {
+    padding: 0;
+}
+
+#bpsMenuCardRBT table {
+    margin: 0;
 }
