@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    feather.replace();
+    initHeadlines();
+
     aHistoryData = $.getJSON("/js/data.json", function (oJSON) {
         initChartBurnHistory(oJSON);
         initChartBurnHistoryCurrentYear(oJSON);
@@ -6,12 +10,25 @@ $(document).ready(function () {
         initChartBurnHistoryMonthly(oJSON);
         initChartBurnHistoryMonthlyCurrentYear(oJSON);
     });
-
-    $('#collapseTable').collapse('show');
-    var iCurrentYear = new Date().getFullYear();
-    $('#btnChart3').html('Daily RBT Burned - Graph for ' + iCurrentYear);
-    $('#btnChart5').html('Monthly RBT Burned - Graph for ' + iCurrentYear);
 });
+
+$('.bpsMenuItem').click(function() {
+    $('#content div').hide();
+    var oTarget = '#' + $(this).data('target');
+    $(oTarget).show();
+});
+
+function initHeadlines(){
+    var iCurrentYear = new Date().getFullYear();
+    $('#bpsHdlC3').html('RBT Burned Daily for ' + iCurrentYear);
+    $('#bpsMenuItemC3').html(feather.icons['trending-up'].toSvg() + ' RBT Burned Monthly ' + iCurrentYear);
+    $('#bpsHdlC5').html('RBT Burned Monthly for ' + iCurrentYear);
+    $('#bpsMenuItemC5').html(feather.icons['trending-up'].toSvg() + ' RBT Burned Monthly ' + iCurrentYear);
+}
+
+function p(sText) {
+    console.log(sText);
+}
 
 // chart 1
 function initChartBurnHistory(oJSON) {
@@ -244,88 +261,4 @@ function initChartBurnHistoryMonthlyCurrentYear(oJSON) {
         document.getElementById('idChartBurnHistoryMonthlyCurrentYear'),
         config
     );
-}
-
-function onClickTable(oEvent) {
-    $('#collapseChart1').collapse('hide');
-    $('#collapseChart2').collapse('hide');
-    $('#collapseChart3').collapse('hide');
-    $('#collapseChart4').collapse('hide');
-    $('#collapseChart5').collapse('hide');
-    $('#btnTable').removeClass('btn-secondary').addClass('btn-dark');
-    $('#btnChart1').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart2').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart3').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart4').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart5').removeClass('btn-dark').addClass('btn-secondary');
-}
-
-function onClickChart1(oEvent) {
-    $('#collapseTable').collapse('hide');
-    $('#collapseChart2').collapse('hide');
-    $('#collapseChart3').collapse('hide');
-    $('#collapseChart4').collapse('hide');
-    $('#collapseChart5').collapse('hide');
-    $('#btnTable').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart1').removeClass('btn-secondary').addClass('btn-dark');
-    $('#btnChart2').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart3').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart4').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart5').removeClass('btn-dark').addClass('btn-secondary');
-}
-
-function onClickChart2(oEvent) {
-    $('#collapseTable').collapse('hide');
-    $('#collapseChart1').collapse('hide');
-    $('#collapseChart3').collapse('hide');
-    $('#collapseChart4').collapse('hide');
-    $('#collapseChart5').collapse('hide');
-    $('#btnTable').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart1').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart2').removeClass('btn-secondary').addClass('btn-dark');
-    $('#btnChart3').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart4').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart5').removeClass('btn-dark').addClass('btn-secondary');
-}
-
-function onClickChart3(oEvent) {
-    $('#collapseTable').collapse('hide');
-    $('#collapseChart1').collapse('hide');
-    $('#collapseChart2').collapse('hide');
-    $('#collapseChart4').collapse('hide');
-    $('#collapseChart5').collapse('hide');
-    $('#btnTable').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart1').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart2').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart3').removeClass('btn-secondary').addClass('btn-dark');
-    $('#btnChart4').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart5').removeClass('btn-dark').addClass('btn-secondary');
-}
-
-function onClickChart4(oEvent) {
-    $('#collapseTable').collapse('hide');
-    $('#collapseChart1').collapse('hide');
-    $('#collapseChart2').collapse('hide');
-    $('#collapseChart3').collapse('hide');
-    $('#collapseChart5').collapse('hide');
-    $('#btnTable').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart1').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart2').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart3').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart4').removeClass('btn-secondary').addClass('btn-dark');
-    $('#btnChart5').removeClass('btn-dark').addClass('btn-secondary');
-}
-
-function onClickChart5(oEvent) {
-    $('#collapseTable').collapse('hide');
-    $('#collapseChart1').collapse('hide');
-    $('#collapseChart2').collapse('hide');
-    $('#collapseChart3').collapse('hide');
-    $('#collapseChart4').collapse('hide');
-    $('#btnTable').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart1').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart2').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart3').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart4').removeClass('btn-dark').addClass('btn-secondary');
-    $('#btnChart5').removeClass('btn-secondary').addClass('btn-dark');
 }
