@@ -119,6 +119,37 @@ footer a:hover {
     border-color: #212529;
 }
 
+.bpsCard {
+    width: 100%;
+}
+
+.bpsVideo {
+    width: 100%;
+    min-height: 400px;
+}
+
+#bpsLinkImpressum,
+#bpsLinkYouTube,
+#bpsLinkGitHub {
+    display: unset;   
+    padding: 0;
+    color: rgba(50, 50, 50, 0.8);
+    transition: all 1s;
+    text-decoration: none;
+}
+
+#bpsLinkImpressum:hover,
+#bpsLinkYouTube:hover,
+#bpsLinkGitHub:hover {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    transition: all 1s;
+}
+
+#content {
+    padding-bottom: 300px;
+}
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
     .bpsScrollable {

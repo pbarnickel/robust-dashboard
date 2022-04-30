@@ -25,7 +25,15 @@
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
-                    <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBT" role="button" aria-expanded="true" aria-controls="collapseRBT">
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a id="bpsMenuItemHome" class="bpsMenuItem nav-link" data-target="bpsHome">
+                                <span data-feather="home"></span>
+                                Home
+                            </a>
+                        </li>
+                    </ul>
+                    <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBT" role="button" aria-expanded="false" aria-controls="collapseRBT">
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bpsSidebarHdl">
                             <img class="bpsMenuHdlIcon" src="/media/RBT.svg" />
                             <span>
@@ -33,7 +41,7 @@
                             </span>
                         </h6>
                     </a>
-                    <div class="collapse show" id="collapseRBT">
+                    <div class="collapse" id="collapseRBT">
                         <div id="bpsMenuCardRBT" class="card card-body bpsMenuCard">
                             <table class="table table-borderless">
                                 <tr>
@@ -96,7 +104,7 @@
                         </li>
                     </ul>
 
-                    <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBS" role="button" aria-expanded="true" aria-controls="collapseRBS">
+                    <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBS" role="button" aria-expanded="false" aria-controls="collapseRBS">
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bpsSidebarHdl">
                             <img class="bpsMenuHdlIcon" src="/media/RBS.svg" />
                             <span>
@@ -104,7 +112,7 @@
                             </span>
                         </h6>
                     </a>
-                    <div class="collapse show" id="collapseRBS">
+                    <div class="collapse" id="collapseRBS">
                         <div id="bpsMenuCardRBS" class="card card-body bpsMenuCard">
                             Coming soon
                         </div>
@@ -115,9 +123,25 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                     <div id="content" class="container">
-                        <div id="bpsT1" class="bpsTarget">
+                        <div id="bpsHome" class="bpsTarget">
+                            <h1 id="bpsHdlHome" class="h2">Robust Dashboard</h1>
+                            <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
+                            <p class="lead">If you also like my work on YouTube, I would be very happy about a subscription!</p>
+
+                            <div class="row row-cols-1 row-cols-md-2 g-4">
+                                <div class="col">
+                                    <div class="card bpsCard">
+                                        <iframe class="bpsVideo" src="https://www.youtube.com/embed/Cpkb0WkYHkc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <!--div class="card-body">
+                                            <h5 class="card-title"></h5>
+                                            <p class="card-text"></p>
+                                        </div-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bpsT1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlT1" class="h2">RBT Burned Daily</h1>
-                            <p>This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
                             <?php
                             include('php/loadDashboard.php');
                             ?>
@@ -146,6 +170,32 @@
                             <h1 id="bpsHdlC6" class="h2">RBT Supply</h1>
                             <canvas id="idChartSupply"></canvas>
                         </div>
+
+                        <div id="bpsImpressum" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlImpressum" class="h2">Impressum</h1>
+                            <h5>Haftungsbeschränkung für eigene Inhalte</h5>
+                            <p class="lead">
+                                Alle Inhalte dieses Internetauftritts wurden mit Sorgfalt und nach bestem Gewissen erstellt. Eine Gewähr für die Aktualität, Vollständigkeit und Richtigkeit sämtlicher Seiten kann ich jedoch nicht übernehmen. Gemäß § 7 Abs. 1 TMG bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich, nach den §§ 8 bis 10 TMG jedoch nicht verpflichtet, die übermittelten oder gespeicherten fremden Informationen zu überwachen. Eine umgehende Entfernung dieser Inhalte erfolgt ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung und ich hafte nicht vor dem Zeitpunkt der Kenntniserlangung.
+                            </p>
+                            <h5>Haftungsbeschränkung für externe Links</h5>
+                            <p class="lead">
+                                Dieser Internetauftritt enthält Verknüpfungen zu Webseiten Dritter, auf deren Inhalt ich keinen Einfluss habe und für die ich keine Gewähr übernehme. Für die Inhalte und Richtigkeit der Informationen ist der jeweilige Informationsanbieter der verlinkten Webseite verantwortlich. Als die Verlinkung vorgenommen wurde, waren für mich keine Rechtsverstöße erkennbar. Sollte mir eine Rechtsverletzung bekannt werden, wird der jeweilige Link umgehend von mir entfernt.
+                            </p>
+                            <h5>Datenschutz</h5>
+                            <p class="lead">
+                                Bei dem Besuch dieses Internetauftritts speichert der Webserver standardgemäß Zugriffsinformationen (IP-Adresse, Uhrzeit, aufgerufene Web-Seite, Browser-Kennung, Quelle/Verweis, von welchem Sie auf die Seite gelangten) zur statistischen Auswertung. Eine Weiterleitung der Daten an Dritte findet nicht statt. Personenbezogene Daten werden weder erfasst noch gespeichert oder ausgewertet.
+                            </p>
+                            <h5>Angaben gemäß § 5 TMG</h5>
+                            <p class="lead">Philipp Barnickel</p>
+                            <h6>Postanschrift:</h6>
+                            <p class="lead">Kirschenweg 7<br>64678 Lindenfels</p>
+                            <h6>Kontakt:</h6>
+                            <p class="lead">E-Mail: philippbarnickel [at] gmail.com</p>
+                            <h6>Hinweise zur Website</h6>
+                            <h6>Information gemäß § 36 VSBG</h6>
+                            <p class="lead">Gemäß § 36 VSBG (Verbraucherstreitbeilegungsgesetz – Gesetz über die alternative Streitbeilegung in Verbrauchersachen) erklärt der Betreiber dieser Website: Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+                            <p><em>Das Impressum wurde mit dem <a href="https://www.activemind.de/datenschutz/impressums-generator/">Impressums-Generator der activeMind AG</a> erstellt.</em></p>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -159,7 +209,10 @@
                 -
                 <a target="_blank" href="https://robustswap.com/">Robust Swap</a>
                 -
-                <a href="impressum.php">Impressum</a>
+                <a id="bpsLinkImpressum" class="bpsMenuItem nav-link" data-target="bpsImpressum">Impressum</a>
+                -
+                <a target="_blank" id="bpsLinkYouTube" href="https://www.youtube.com/channel/UCfuKzzQqA_UVnWc2prIyiGA"><span data-feather="youtube"></span></a>
+                <a target="_blank" id="bpsLinkGitHub" href="https://github.com/pbarnickel/robust-dashboard"><span data-feather="github"></span></a>
             </p>
         </div>
     </footer>

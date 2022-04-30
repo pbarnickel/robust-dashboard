@@ -20,8 +20,13 @@ $('.bpsMenuItem').click(function () {
 });
 
 $('#bpsMenuItemT1').click(function () {
-    var sNewHtml = $('#bpsT1').html().replaceAll(' style="display: none;"','');
+    var sNewHtml = $('#bpsT1').html().replaceAll(' style="display: none;"', '');
     $('#bpsT1').html(sNewHtml);
+});
+
+$('#bpsMenuItemHome').click(function () {
+    var sNewHtml = $('#bpsHome').html().replaceAll(' style="display: none;"', '');
+    $('#bpsHome').html(sNewHtml);
 });
 
 function initDisplayConfiguration() {
