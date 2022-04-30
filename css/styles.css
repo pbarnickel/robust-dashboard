@@ -103,3 +103,19 @@ footer a:hover {
 #bpsMenuCardRBT table {
     margin: 0;
 }
+
+.nav-item {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .bpsScrollable {
+        overflow: scroll;
+    }
+
+    #sidebarMenu {
+        overflow-y: scroll;
+        padding-bottom: 100px;
+    }
+}

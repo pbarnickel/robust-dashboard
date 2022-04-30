@@ -7,12 +7,10 @@ function p(sText) {
 }
 
 $(document).ready(function () {
-
-    feather.replace();
+    initDisplayConfiguration();
     initHeadlines();
     initCharts();
-    initTableFunctions();
-    
+    initTableFunctions();    
 });
 
 $('.bpsMenuItem').click(function() {
@@ -20,6 +18,16 @@ $('.bpsMenuItem').click(function() {
     var oTarget = '#' + $(this).data('target');
     $(oTarget).show();
 });
+
+function initDisplayConfiguration() {
+
+    //icons
+    feather.replace();
+
+    //responsive table
+    $('#bpsRbtMainTable').parent().addClass('bpsScrollable');
+
+}
 
 function initTableFunctions() {
     $('#bpsRbtMainTable').DataTable({
