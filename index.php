@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Robust Dashboard</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/datatables.min.css" rel="stylesheet">
     <link href="/css/dashboard.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
@@ -165,6 +166,7 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/datatables.min.js"></script>
     <script src="/js/feather.min.js"></script>
     <script src="/js/chart.js"></script>
     <script src="/js/data.json"></script>
