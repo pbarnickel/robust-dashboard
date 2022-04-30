@@ -7,8 +7,8 @@
     <title>Robust Dashboard</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/datatables.min.css" rel="stylesheet">
-    <link href="/css/dashboard.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/dashboard.min.css" rel="stylesheet">
+    <link href="/css/styles.min.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
 
@@ -223,7 +223,7 @@
     <script src="/js/feather.min.js"></script>
     <script src="/js/chart.js"></script>
     <script src="/js/data.json"></script>
-    <script src="/js/main.js"></script>
+    <script src="/js/main.min.js"></script>
 </body>
 
 </html>
