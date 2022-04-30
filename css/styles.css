@@ -108,6 +108,17 @@ footer a:hover {
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+.paginate_button a,
+.paginate_button a:hover
+{
+    color: rgba(0,0,0,1);
+}
+
+.page-item.active .page-link {
+    background-color: #212529;
+    border-color: #212529;
+}
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
     .bpsScrollable {
