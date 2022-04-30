@@ -10,13 +10,18 @@ $(document).ready(function () {
     initDisplayConfiguration();
     initHeadlines();
     initCharts();
-    initTableFunctions();    
+    initTableFunctions();
 });
 
-$('.bpsMenuItem').click(function() {
+$('.bpsMenuItem').click(function () {
     $('#content div').hide();
     var oTarget = '#' + $(this).data('target');
     $(oTarget).show();
+});
+
+$('#bpsMenuItemT1').click(function () {
+    var sNewHtml = $('#bpsT1').html().replaceAll(' style="display: none;"','');
+    $('#bpsT1').html(sNewHtml);
 });
 
 function initDisplayConfiguration() {
@@ -31,29 +36,41 @@ function initDisplayConfiguration() {
 
 function initTableFunctions() {
     $('#bpsRbtMainTable').DataTable({
-        columnDefs: [
-            { targets: 1, type: 'num-fmt' },
-            { targets: 2, type: 'num-fmt' },
-            { targets: 3, type: 'num-fmt' },
-            { targets: 4, type: 'num-fmt' }
+        columnDefs: [{
+                targets: 1,
+                type: 'num-fmt'
+            },
+            {
+                targets: 2,
+                type: 'num-fmt'
+            },
+            {
+                targets: 3,
+                type: 'num-fmt'
+            },
+            {
+                targets: 4,
+                type: 'num-fmt'
+            }
         ],
-        pageLength : 50,
-        language : {
-            emptyTable          : 'No data available',
-            info                : '_START_ to _END_ of _TOTAL_',
-            infoEmpty           : '0 to 0 of 0',
-            infoFiltered        : '(Filtered _MAX_)',
-            lengthMenu          : 'Show _MENU_',
-            loadingRecords      : 'Data loading...',
-            processing          : '...',
-            search              : '',
-            searchPlaceholder   : 'Search',
-            zeroRecords         : 'No data found',
-            paginate            : {
-                first           : 'Start',
-                last            : 'End',
-                next            : 'Forward',
-                previous        : 'Back'
+        pageLength: 50,
+        responsive: true,
+        language: {
+            emptyTable: 'No data available',
+            info: '_START_ to _END_ of _TOTAL_',
+            infoEmpty: '0 to 0 of 0',
+            infoFiltered: '(Filtered _MAX_)',
+            lengthMenu: 'Show _MENU_',
+            loadingRecords: 'Data loading...',
+            processing: '...',
+            search: '',
+            searchPlaceholder: 'Search',
+            zeroRecords: 'No data found',
+            paginate: {
+                first: 'Start',
+                last: 'End',
+                next: 'Forward',
+                previous: 'Back'
             }
         },
         order: [
@@ -62,7 +79,7 @@ function initTableFunctions() {
     });
 }
 
-function initMenuCards(oData){
+function initMenuCards(oData) {
     var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.Total;
     var iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
     $('#bpsRbtTotalBurned').html(parseFloat(oData.Total).toLocaleString());
@@ -70,7 +87,7 @@ function initMenuCards(oData){
     $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString());
 }
 
-function initCharts(){
+function initCharts() {
     aHistoryData = $.getJSON("/js/data.json", function (oJSON) {
         initChartBurnHistory(oJSON);
         initChartBurnHistoryCurrentYear(oJSON);
@@ -83,7 +100,7 @@ function initCharts(){
     });
 }
 
-function initHeadlines(){
+function initHeadlines() {
     var iCurrentYear = new Date().getFullYear();
     $('#bpsHdlC3').html('RBT Burned Daily ' + iCurrentYear);
     $('#bpsMenuItemC3').html(feather.icons['trending-up'].toSvg() + ' RBT Burned Daily ' + iCurrentYear);
