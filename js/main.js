@@ -1,6 +1,7 @@
 const RBT_INIT_TOTAL_SUPPLY = 100000;
 const RBT_LOCKED_SUPPLY = 50000;
 const RBT_MANUALLY_BURN = 4950;
+var oRbtData;
 
 function p(sText) {
     console.log(sText);
@@ -8,9 +9,10 @@ function p(sText) {
 
 $(document).ready(function () {
     initDisplayConfiguration();
+    initTableFunctions();
+    oRbtData = $('#bpsRbtMainTable').DataTable().data();
     initHeadlines();
     initCharts();
-    initTableFunctions();
 });
 
 $('.bpsMenuItem').click(function () {
@@ -20,8 +22,10 @@ $('.bpsMenuItem').click(function () {
 });
 
 $('#bpsMenuItemT1').click(function () {
-    var sNewHtml = $('#bpsT1').html().replaceAll(' style="display: none;"', '');
-    $('#bpsT1').html(sNewHtml);
+    $('#bpsRbtMainTable').DataTable().clear();
+    $('#bpsRbtMainTable').DataTable().destroy();
+    initTableFunctions();
+    $('#bpsRbtMainTable').DataTable().clear().rows.add(oRbtData).draw();
 });
 
 $('#bpsMenuItemHome').click(function () {
