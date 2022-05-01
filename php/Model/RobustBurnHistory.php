@@ -68,14 +68,14 @@ class RobustBurnHistory implements Constants
         $sOutput = $sOutput . '<th scope="col" class="align-middle">RBT Available Supply</th>';
         $sOutput = $sOutput . '</tr></thead><tbody>';
         
-        //data today
-        $sCurrentSupply = Constants::RBT_INIT_TOTAL_SUPPLY - $oCurrentSituation->getTotalBurned();
-        $sAvailableSupply = $sCurrentSupply - Constants::RBT_LOCKED_SUPPLY;
+        //data today     
         $oDate = date_create($oCurrentSituation->getDate());
-        $sOutput = $sOutput . '<tr class="table-primary"><th scope="row">' . date_format($oDate,"Y/m/d") . '</th>';
+        $sOutput = $sOutput . '<tr id="bpsPrimaryRow" class="table-primary"><th scope="row">' . date_format($oDate,"Y/m/d") . '</th>';
         $sOutput = $sOutput . '<td class="align-middle">' . number_format($oCurrentSituation->getTotalBurned(),2,".",",") . '</td>';
         $sOutput = $sOutput . '<td class="align-middle">' . number_format($oCurrentSituation->getDifferenceBurned(),2,".",",") . '</td>';
+        $sCurrentSupply = Constants::RBT_INIT_TOTAL_SUPPLY - $oCurrentSituation->getTotalBurned();
         $sOutput = $sOutput . '<td class="align-middle">'. number_format($sCurrentSupply,2,".",",");
+        $sAvailableSupply = $sCurrentSupply - Constants::RBT_LOCKED_SUPPLY;
         $sOutput = $sOutput . '<td class="align-middle">' . number_format($sAvailableSupply,2,".",",") . '</td></tr>';
 
         //historic data

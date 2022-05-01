@@ -150,6 +150,10 @@ footer a:hover {
     padding-bottom: 300px;
 }
 
+#bpsPrimaryRow {
+    background-color: rgba(150, 150, 255, 0.3);
+}
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
     .bpsScrollable {

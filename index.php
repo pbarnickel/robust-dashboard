@@ -8,7 +8,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/datatables.min.css" rel="stylesheet">
     <link href="/css/dashboard.min.css" rel="stylesheet">
-    <link href="/css/styles.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
 
@@ -128,7 +128,7 @@
                             <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
                             <p class="lead">If you also like my work on YouTube, I would be very happy about a subscription!</p>
 
-                            <div class="row row-cols-1 row-cols-md-2 g-4">
+                            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-4">
                                 <div class="col">
                                     <div class="card bpsCard">
                                         <iframe class="bpsVideo" src="https://www.youtube.com/embed/Cpkb0WkYHkc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
