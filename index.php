@@ -147,6 +147,7 @@
                             <h1 id="bpsHdlHome" class="h2">Robust Dashboard</h1>
                             <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
                             <p class="lead">If you also like my work on YouTube, I would be very happy about a subscription!</p>
+                            <p class="lead">Due to the fact that the data is persisted by the robust API once a day at midnight in the London time zone (UTC+01:00), there may be deviations compared to other data on other platforms. The data is also only persisted at this point in time. High and low points throughout the day are therefore not taken into account in the data display.</p>
 
                             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-4">
                                 <div class="col">
