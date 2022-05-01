@@ -110,6 +110,18 @@
                                 RBT Supply
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemC7" class="bpsMenuItem nav-link" data-target="bpsC7">
+                                <span data-feather="trending-up"></span>
+                                RBT Market Cap
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemC8" class="bpsMenuItem nav-link" data-target="bpsC8">
+                                <span data-feather="trending-up"></span>
+                                RBT Holders
+                            </a>
+                        </li>
                     </ul>
 
                     <a class="bpsBtnMenuHdl" data-bs-toggle="collapse" href="#collapseRBS" role="button" aria-expanded="false" aria-controls="collapseRBS">
@@ -177,6 +189,14 @@
                         <div id="bpsC6" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlC6" class="h2">RBT Supply</h1>
                             <canvas id="idChartSupply"></canvas>
+                        </div>
+                        <div id="bpsC7" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlC7" class="h2">RBT Market Cap</h1>
+                            <canvas id="idChartMarketCap"></canvas>
+                        </div>
+                        <div id="bpsC8" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlC8" class="h2">RBT Holders</h1>
+                            <canvas id="idChartHolders"></canvas>
                         </div>
 
                         <div id="bpsImpressum" class="bpsTarget bpsHidden">

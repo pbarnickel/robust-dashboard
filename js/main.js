@@ -114,6 +114,8 @@ function initCharts() {
         initChartBurnHistoryMonthly(oJSON);
         initChartBurnHistoryMonthlyCurrentYear(oJSON);
         initChartSupply(oJSON);
+        initChartMarketCap(oJSON);
+        initChartHolders(oJSON);
 
         initMenuCards(oJSON[0]);
     });
@@ -418,6 +420,101 @@ function initChartSupply(oJSON) {
 
     const oChartSupply = new Chart(
         document.getElementById('idChartSupply'),
+        config
+    );
+}
+
+// chart 7 - RBT market cap
+function initChartMarketCap(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        if(oJSON[i].MarketCap){
+            aData.push({
+                x: oJSON[i].Date,
+                y: oJSON[i].MarketCap
+            });    
+        }
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBT Market Cap',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 10000000,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartMarketCap = new Chart(
+        document.getElementById('idChartMarketCap'),
+        config
+    );
+}
+
+
+// chart 8 - RBT holders
+function initChartHolders(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        if(oJSON[i].Holders){
+            aData.push({
+                x: oJSON[i].Date,
+                y: oJSON[i].Holders.replace(',', '')
+            });    
+        }
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBT Holders',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 20000,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartHolders = new Chart(
+        document.getElementById('idChartHolders'),
         config
     );
 }
