@@ -66,6 +66,8 @@ class RobustBurnHistory implements Constants
         $sOutput = $sOutput . '<th scope="col" class="align-middle">RBT Burned at Day</th>';
         $sOutput = $sOutput . '<th scope="col" class="align-middle">RBT Current Supply</th>';
         $sOutput = $sOutput . '<th scope="col" class="align-middle">RBT Available Supply</th>';
+        $sOutput = $sOutput . '<th scope="col" class="align-middle">Market Cap</th>';
+        $sOutput = $sOutput . '<th scope="col" class="align-middle">Holders</th>';
         $sOutput = $sOutput . '</tr></thead><tbody>';
         
         //data today     
@@ -76,7 +78,9 @@ class RobustBurnHistory implements Constants
         $sCurrentSupply = Constants::RBT_INIT_TOTAL_SUPPLY - $oCurrentSituation->getTotalBurned();
         $sOutput = $sOutput . '<td class="align-middle">'. number_format($sCurrentSupply,2,".",",");
         $sAvailableSupply = $sCurrentSupply - Constants::RBT_LOCKED_SUPPLY;
-        $sOutput = $sOutput . '<td class="align-middle">' . number_format($sAvailableSupply,2,".",",") . '</td></tr>';
+        $sOutput = $sOutput . '<td class="align-middle">' . number_format($sAvailableSupply,2,".",",") . '</td>';
+        $sOutput = $sOutput . '<td class="align-middle">' . number_format($oCurrentSituation->getMarketCap(),2,".",",") . '</td>';
+        $sOutput = $sOutput . '<td class="align-middle">' . $oCurrentSituation->getHolders() . '</td></tr>';
 
         //historic data
         $iLen = $this->getSize();
@@ -89,7 +93,14 @@ class RobustBurnHistory implements Constants
             $sCurrentSupply = Constants::RBT_INIT_TOTAL_SUPPLY - $oEntry->getTotalBurned();
             $sOutput = $sOutput . '<td class="align-middle">' . number_format($sCurrentSupply,2,".",",") . '</td>';
             $sAvailableSupply = $sCurrentSupply - Constants::RBT_LOCKED_SUPPLY;
-            $sOutput = $sOutput . '<td class="align-middle">' . number_format($sAvailableSupply,2,".",",") . '</td></tr>';
+            $sOutput = $sOutput . '<td class="align-middle">' . number_format($sAvailableSupply,2,".",",") . '</td>';
+            if($oEntry->getMarketCap() === ""){
+                $sMarketCap = $oEntry->getMarketCap();
+            } else {
+                $sMarketCap = number_format($oEntry->getMarketCap(),2,".",",");
+            }
+            $sOutput = $sOutput . '<td class="align-middle">' . $sMarketCap . '</td>';
+            $sOutput = $sOutput . '<td class="align-middle">' . $oEntry->getHolders() . '</td></tr>';
         }
 
         $sOutput = $sOutput . '</tbody></table>';

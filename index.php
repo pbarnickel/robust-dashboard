@@ -8,7 +8,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/datatables.min.css" rel="stylesheet">
     <link href="/css/dashboard.min.css" rel="stylesheet">
-    <link href="/css/style.min.css" rel="stylesheet">
+    <link href="/css/styles.min.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
 
@@ -55,6 +55,14 @@
                                 <tr>
                                     <td class="align-middle">Available Supply</td>
                                     <td id="bpsRbtAvailableSupply" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Market Cap</td>
+                                    <td id="bpsRbtMarketCap" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Holders</td>
+                                    <td id="bpsRbtHolders" class="align-middle"></td>
                                 </tr>
                             </table>
                         </div>

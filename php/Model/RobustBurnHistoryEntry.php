@@ -9,6 +9,8 @@
 
 namespace BPS\RobustDashboard\Model;
 
+use BadFunctionCallException;
+
 class RobustBurnHistoryEntry implements \JsonSerializable
 {
 
@@ -16,13 +18,17 @@ class RobustBurnHistoryEntry implements \JsonSerializable
     protected $sDate;
     protected $dTotalBurned;
     protected $dDifferenceBurned;
+    protected $dMarketCap;
+    protected $dHolders;
 
-    public function __construct($sID, $sDate, $dTotalBurned, $dDifferenceBurned)
+    public function __construct($sID, $sDate, $dTotalBurned, $dDifferenceBurned, $dMarketCap, $dHolders)
     {
         $this->sID = $sID;
         $this->sDate = $sDate;
         $this->dTotalBurned = $dTotalBurned;
         $this->dDifferenceBurned = $dDifferenceBurned;
+        $this->dMarketCap = $dMarketCap;
+        $this->dHolders = $dHolders;
     }
 
     public function getID()
@@ -45,6 +51,16 @@ class RobustBurnHistoryEntry implements \JsonSerializable
         return $this->dDifferenceBurned;
     }
 
+    public function getMarketCap()
+    {
+        return $this->dMarketCap;
+    }
+
+    public function getHolders()
+    {
+        return $this->dHolders;
+    }
+
     public function setDate($sDate)
     {
         $this->sDate = $sDate;
@@ -60,12 +76,24 @@ class RobustBurnHistoryEntry implements \JsonSerializable
         $this->dDifferenceBurned = $dDifferenceBurned;
     }
 
+    public function setMarketCap($dMarketCap)
+    {
+        $this->dMarketCap = $dMarketCap;
+    }
+
+    public function setHolders($dHolders)
+    {
+        $this->dHolders = $dHolders;
+    }
+
     public function jsonSerialize()
     {
         return [
             'Date' => $this->getDate(),
             'Burned' => $this->getDifferenceBurned(),
-            'Total' => $this->getTotalBurned()
+            'Total' => $this->getTotalBurned(),
+            'MarketCap' => $this->getMarketCap(),
+            'Holders' => $this->getHolders()
         ];
     }
 }

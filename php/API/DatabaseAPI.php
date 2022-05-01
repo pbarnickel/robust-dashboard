@@ -63,11 +63,16 @@ class DatabaseAPI extends BaseAPI
         }
         $dDifferenceBurned = bcadd($dDifferenceBurned, '0', 2);
 
-        $sQuery = Constants::DB_QRY_INSERT_ROBUST_BURNED_HISTORY . ' ("' . $sDate . '", ' . $dTotalRobustBurned . ', ' . $dDifferenceBurned . ')';
+        $sMarketCap = RequestAPI::getMarketCap();
+        $dMarketCap = bcadd($sMarketCap, '0', 2);
+
+        $sHolders = RequestAPI::getHolders();
+
+        $sQuery = Constants::DB_QRY_INSERT_ROBUST_BURNED_HISTORY . ' ("' . $sDate . '", ' . $dTotalRobustBurned . ', ' . $dDifferenceBurned . ', ' . $dMarketCap . ', ' . $sHolders . ')';
 
         if ($this->oConnection->query($sQuery) === TRUE) {
             $sID = $this->oConnection->insert_id;
-            $oNewEntry = new RobustBurnHistoryEntry($sID, $sDate, $dTotalRobustBurned, $dDifferenceBurned);
+            $oNewEntry = new RobustBurnHistoryEntry($sID, $sDate, $dTotalRobustBurned, $dDifferenceBurned, $dMarketCap, $sHolders);
         } else {
             $oNewEntry = FALSE;
             //echo "Error: " . $sQuery . "<br>" . $this->oConnection->error;
@@ -89,7 +94,7 @@ class DatabaseAPI extends BaseAPI
 
             $oEntry = $aEntries[$i];
 
-            $sQuery = Constants::DB_QRY_INSERT_ROBUST_BURNED_HISTORY . ' ("' . $oEntry->getDate() . '", ' . $oEntry->getTotalBurned() . ', ' . $oEntry->getDifferenceBurned() . ')';
+            $sQuery = Constants::DB_QRY_INSERT_ROBUST_BURNED_HISTORY . ' ("' . $oEntry->getDate() . '", ' . $oEntry->getTotalBurned() . ', ' . $oEntry->getDifferenceBurned() . ', ' . $oEntry->getMarketCap() . ', ' . $oEntry->getHolders() . ')';
 
             $this->oConnection->query($sQuery);
         }

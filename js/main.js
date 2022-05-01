@@ -60,6 +60,14 @@ function initTableFunctions() {
             {
                 targets: 4,
                 type: 'num-fmt'
+            },
+            {
+                targets: 5,
+                type: 'num-fmt'
+            },
+            {
+                targets: 6,
+                type: 'num-fmt'
             }
         ],
         pageLength: 50,
@@ -91,9 +99,11 @@ function initTableFunctions() {
 function initMenuCards(oData) {
     var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.Total;
     var iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
-    $('#bpsRbtTotalBurned').html(parseFloat(oData.Total).toLocaleString());
-    $('#bpsRbtCurrentSupply').html(iCurrentSupply.toLocaleString());
-    $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString());
+    $('#bpsRbtTotalBurned').html(parseFloat(oData.Total).toLocaleString() + " RBT");
+    $('#bpsRbtCurrentSupply').html(iCurrentSupply.toLocaleString() + " RBT");
+    $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString() + " RBT");
+    $('#bpsRbtMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
+    $('#bpsRbtHolders').html(oData.Holders);
 }
 
 function initCharts() {
