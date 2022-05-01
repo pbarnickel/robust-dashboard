@@ -96,11 +96,13 @@ footer a:hover {
     border-radius: 0;
 }
 
-#bpsMenuCardRBT {
+#bpsMenuCardRBT,
+#bpsMenuCardRBS {
     padding: 0;
 }
 
-#bpsMenuCardRBT table {
+#bpsMenuCardRBT table,
+#bpsMenuCardRBS table {
     margin: 0;
 }
 
@@ -150,8 +152,18 @@ footer a:hover {
     padding-bottom: 300px;
 }
 
-#bpsPrimaryRow {
+#bpsPrimaryRow,
+#bpsRbsPrimaryRow {
     background-color: rgba(150, 150, 255, 0.3);
+}
+
+.bpsScrollable {
+    overflow: scroll;
+}
+
+#sidebarMenu {
+    overflow-y: scroll;
+    padding-bottom: 100px;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

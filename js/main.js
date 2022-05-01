@@ -2,6 +2,7 @@ const RBT_INIT_TOTAL_SUPPLY = 100000;
 const RBT_LOCKED_SUPPLY = 50000;
 const RBT_MANUALLY_BURN = 4950;
 var oRbtData;
+var oRbsData;
 
 function p(sText) {
     console.log(sText);
@@ -9,8 +10,10 @@ function p(sText) {
 
 $(document).ready(function () {
     initDisplayConfiguration();
-    initTableFunctions();
+    initTableFunctionsRBT();
     oRbtData = $('#bpsRbtMainTable').DataTable().data();
+    initTableFunctionsRBS();
+    oRbsData = $('#bpsRbsMainTable').DataTable().data();
     initHeadlines();
     initCharts();
 });
@@ -24,8 +27,15 @@ $('.bpsMenuItem').click(function () {
 $('#bpsMenuItemT1').click(function () {
     $('#bpsRbtMainTable').DataTable().clear();
     $('#bpsRbtMainTable').DataTable().destroy();
-    initTableFunctions();
+    initTableFunctionsRBT();
     $('#bpsRbtMainTable').DataTable().clear().rows.add(oRbtData).draw();
+});
+
+$('#bpsMenuItemRbsT1').click(function () {
+    $('#bpsRbsMainTable').DataTable().clear();
+    $('#bpsRbsMainTable').DataTable().destroy();
+    initTableFunctionsRBS();
+    $('#bpsRbsMainTable').DataTable().clear().rows.add(oRbsData).draw();
 });
 
 $('#bpsMenuItemHome').click(function () {
@@ -39,11 +49,12 @@ function initDisplayConfiguration() {
     feather.replace();
 
     //responsive table
-    $('#bpsRbtMainTable').parent().addClass('bpsScrollable');
+    $('#bpsRbtMainTable').parent().addClass('table-responsive');
+    $('#bpsRbsMainTable').parent().addClass('table-responsive');
 
 }
 
-function initTableFunctions() {
+function initTableFunctionsRBT() {
     $('#bpsRbtMainTable').DataTable({
         columnDefs: [{
                 targets: 1,
@@ -96,6 +107,52 @@ function initTableFunctions() {
     });
 }
 
+function initTableFunctionsRBS() {
+
+    $('#bpsRbsMainTable').DataTable({
+        columnDefs: [{
+                targets: 1,
+                type: 'num-fmt'
+            },
+            {
+                targets: 2,
+                type: 'num-fmt'
+            },
+            {
+                targets: 3,
+                type: 'num-fmt'
+            },
+            {
+                targets: 4,
+                type: 'num-fmt'
+            }
+        ],
+        pageLength: 50,
+        responsive: true,
+        language: {
+            emptyTable: 'No data available',
+            info: '_START_ to _END_ of _TOTAL_',
+            infoEmpty: '0 to 0 of 0',
+            infoFiltered: '(Filtered _MAX_)',
+            lengthMenu: 'Show _MENU_',
+            loadingRecords: 'Data loading...',
+            processing: '...',
+            search: '',
+            searchPlaceholder: 'Search',
+            zeroRecords: 'No data found',
+            paginate: {
+                first: 'Start',
+                last: 'End',
+                next: 'Forward',
+                previous: 'Back'
+            }
+        },
+        order: [
+            [0, 'dsc']
+        ]
+    });
+}
+
 function initMenuCards(oData) {
     var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.Total;
     var iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
@@ -104,6 +161,13 @@ function initMenuCards(oData) {
     $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString() + " RBT");
     $('#bpsRbtMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
     $('#bpsRbtHolders').html(oData.Holders);
+}
+
+function initMenuCardsRBS(oData) {
+    $('#bpsRbsTotalSupply').html(parseFloat(oData.Total).toLocaleString() + " RBS");
+    $('#bpsRbsDifferenceSupply').html(parseFloat(oData.Supply).toLocaleString() + " RBS");
+    $('#bpsRbsMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
+    $('#bpsRbsHolders').html(oData.Holders);
 }
 
 function initCharts() {
@@ -118,6 +182,15 @@ function initCharts() {
         initChartHolders(oJSON);
 
         initMenuCards(oJSON[0]);
+    });
+
+    aHistoryDataRBS = $.getJSON("/js/dataRBS.json", function (oJSON) {
+        initChartRbsC1(oJSON);
+        initChartRbsC2(oJSON);
+        initChartRbsC3(oJSON);
+        initChartRbsC4(oJSON);
+
+        initMenuCardsRBS(oJSON[0]);
     });
 }
 
@@ -515,6 +588,191 @@ function initChartHolders(oJSON) {
 
     const oChartHolders = new Chart(
         document.getElementById('idChartHolders'),
+        config
+    );
+}
+
+// chart 1 - RBS total supply
+function initChartRbsC1(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        aData.push({
+            x: oJSON[i].Date,
+            y: oJSON[i].Total
+        });
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBS Total Supply',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 106050,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartRbsC1 = new Chart(
+        document.getElementById('idChartRbsC1'),
+        config
+    );
+}
+
+// chart 2 - RBS supply daily
+function initChartRbsC2(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        aData.push({
+            x: oJSON[i].Date,
+            y: oJSON[i].Supply
+        });
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBS Supply',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 106050,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartRbsC2 = new Chart(
+        document.getElementById('idChartRbsC2'),
+        config
+    );
+}
+
+// chart 3 - RBS market cap
+function initChartRbsC3(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        if(oJSON[i].MarketCap){
+            aData.push({
+                x: oJSON[i].Date,
+                y: oJSON[i].MarketCap
+            });    
+        }
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBS Market Cap',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 1000000,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartRbsC3 = new Chart(
+        document.getElementById('idChartRbsC3'),
+        config
+    );
+}
+
+
+// chart 4 - RBS holders
+function initChartRbsC4(oJSON) {
+
+    var aData = [];
+
+    for (var i = oJSON.length - 1; i > -1; i--) {
+        if(oJSON[i].Holders){
+            aData.push({
+                x: oJSON[i].Date,
+                y: oJSON[i].Holders.replace(',', '')
+            });    
+        }
+    }
+
+    const data = {
+        datasets: [{
+            label: 'RBS Holders',
+            backgroundColor: 'rgb(150, 150, 255)',
+            borderColor: 'rgb(150, 150, 255)',
+            data: aData
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    max: 20000,
+                    min: 0,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    const oChartRbsC4 = new Chart(
+        document.getElementById('idChartRbsC4'),
         config
     );
 }

@@ -8,7 +8,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/datatables.min.css" rel="stylesheet">
     <link href="/css/dashboard.min.css" rel="stylesheet">
-    <link href="/css/styles.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
 
@@ -107,19 +107,19 @@
                         <li class="nav-item">
                             <a id="bpsMenuItemC6" class="bpsMenuItem nav-link" data-target="bpsC6">
                                 <span data-feather="trending-up"></span>
-                                RBT Supply
+                                RBT Supply Daily
                             </a>
                         </li>
                         <li class="nav-item">
                             <a id="bpsMenuItemC7" class="bpsMenuItem nav-link" data-target="bpsC7">
                                 <span data-feather="trending-up"></span>
-                                RBT Market Cap
+                                RBT Market Cap Daily
                             </a>
                         </li>
                         <li class="nav-item">
                             <a id="bpsMenuItemC8" class="bpsMenuItem nav-link" data-target="bpsC8">
                                 <span data-feather="trending-up"></span>
-                                RBT Holders
+                                RBT Holders Daily
                             </a>
                         </li>
                     </ul>
@@ -134,9 +134,58 @@
                     </a>
                     <div class="collapse" id="collapseRBS">
                         <div id="bpsMenuCardRBS" class="card card-body bpsMenuCard">
-                            Coming soon
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td class="align-middle">Total Supply</td>
+                                    <td id="bpsRbsTotalSupply" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Difference Supply</td>
+                                    <td id="bpsRbsDifferenceSupply" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Market Cap</td>
+                                    <td id="bpsRbsMarketCap" class="align-middle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">Holders</td>
+                                    <td id="bpsRbsHolders" class="align-middle"></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a id="bpsMenuItemRbsT1" class="bpsMenuItem nav-link" data-target="bpsRbsT1">
+                                <span data-feather="align-justify"></span>
+                                RBS Total Supply Daily
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemRbsC1" class="bpsMenuItem nav-link" data-target="bpsRbsC1">
+                                <span data-feather="trending-up"></span>
+                                RBS Total Supply
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemRbsC2" class="bpsMenuItem nav-link" data-target="bpsRbsC2">
+                                <span data-feather="trending-up"></span>
+                                RBS Total Supply Daily
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemRbsC3" class="bpsMenuItem nav-link" data-target="bpsRbsC3">
+                                <span data-feather="trending-up"></span>
+                                RBS Market Cap Daily
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="bpsMenuItemRbsC4" class="bpsMenuItem nav-link" data-target="bpsRbsC4">
+                                <span data-feather="trending-up"></span>
+                                RBS Holders Daily
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
 
@@ -200,6 +249,29 @@
                             <canvas id="idChartHolders"></canvas>
                         </div>
 
+                        <div id="bpsRbsT1" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbsT1" class="h2">RBS Total Supply Daily</h1>
+                            <?php
+                            include('php/loadDashboardRBS.php');
+                            ?>
+                        </div>
+                        <div id="bpsRbsC1" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbsC1" class="h2">RBS Total Supply</h1>
+                            <canvas id="idChartRbsC1"></canvas>
+                        </div>
+                        <div id="bpsRbsC2" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbsC2" class="h2">RBS Total Supply Daily</h1>
+                            <canvas id="idChartRbsC2"></canvas>
+                        </div>
+                        <div id="bpsRbsC3" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbsC3" class="h2">RBS Market Cap Daily</h1>
+                            <canvas id="idChartRbsC3"></canvas>
+                        </div>
+                        <div id="bpsRbsC4" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbsC4" class="h2">RBS Holders Monthly</h1>
+                            <canvas id="idChartRbsC4"></canvas>
+                        </div>
+
                         <div id="bpsImpressum" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlImpressum" class="h2">Impressum</h1>
                             <h5>Haftungsbeschränkung für eigene Inhalte</h5>
@@ -252,7 +324,8 @@
     <script src="/js/feather.min.js"></script>
     <script src="/js/chart.js"></script>
     <script src="/js/data.json"></script>
-    <script src="/js/main.min.js"></script>
+    <script src="/js/dataRBS.json"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

@@ -11,6 +11,7 @@ namespace BPS\RobustDashboard\API;
 
 use BPS\RobustDashboard\Constants;
 use BPS\RobustDashboard\API\RequestAPI;
+use BPS\RobustDashboard\Model\RbsHistoryEntry;
 use BPS\RobustDashboard\Model\RobustBurnHistory;
 use BPS\RobustDashboard\Model\RobustBurnHistoryEntry;
 use mysqli;
@@ -45,6 +46,17 @@ class DatabaseAPI extends BaseAPI
         return $oRobustBurnedHistory;
     }
 
+    public function readRbsHistory()
+    {
+
+        $this->openConnection();
+
+        $sQuery = Constants::DB_QRY_SELECT_RBS_HISTORY;
+        $oRbsHistory = $this->oConnection->query($sQuery);
+
+        return $oRbsHistory;
+    }
+
     public function updateRobustBurnHistory($oLastEntry)
     {
 
@@ -73,6 +85,44 @@ class DatabaseAPI extends BaseAPI
         if ($this->oConnection->query($sQuery) === TRUE) {
             $sID = $this->oConnection->insert_id;
             $oNewEntry = new RobustBurnHistoryEntry($sID, $sDate, $dTotalRobustBurned, $dDifferenceBurned, $dMarketCap, $sHolders);
+        } else {
+            $oNewEntry = FALSE;
+            //echo "Error: " . $sQuery . "<br>" . $this->oConnection->error;
+        }
+
+        $this->closeConnection();
+
+        return $oNewEntry;
+    }
+
+    public function updateRbsHistory($oLastEntry)
+    {
+
+        $this->openConnection();
+
+        $sDate = date('d.m.Y',strtotime("-1 days"));
+
+        $sTotalSupply = RequestAPI::getRbsTotalSupply();
+        $dTotalSupply = bcadd($sTotalSupply, '0', 2);
+
+        if ($oLastEntry) {
+            $dLastSupply = bcadd($oLastEntry->getTotalSupply(), '0', 2);
+            $dDifferenceSupply = $dTotalSupply - $dLastSupply;
+        } else {
+            $dDifferenceSupply = $dTotalSupply;
+        }
+        $dDifferenceSupply = bcadd($dDifferenceSupply, '0', 2);
+
+        $sMarketCap = RequestAPI::getRbsMarketCap();
+        $dMarketCap = bcadd($sMarketCap, '0', 2);
+
+        $sHolders = RequestAPI::getRbsHolders();
+
+        $sQuery = Constants::DB_QRY_INSERT_RBS_HISTORY . ' ("' . $sDate . '", ' . $dTotalSupply . ', ' . $dDifferenceSupply . ', ' . $dMarketCap . ', ' . $sHolders . ')';
+
+        if ($this->oConnection->query($sQuery) === TRUE) {
+            $sID = $this->oConnection->insert_id;
+            $oNewEntry = new RbsHistoryEntry($sID, $sDate, $dTotalSupply, $dDifferenceSupply, $dMarketCap, $sHolders);
         } else {
             $oNewEntry = FALSE;
             //echo "Error: " . $sQuery . "<br>" . $this->oConnection->error;
