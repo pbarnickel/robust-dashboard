@@ -8,6 +8,28 @@ function p(sText) {
     console.log(sText);
 }
 
+function requestData() {
+    var request = $.ajax({
+        url: "/php/loadRBT.php",
+        method: "POST",
+        data: {}
+    });
+
+    request.done(function (msg) {
+        $.getJSON("/js/data.json", function (oJSON) {
+            $('#bpsRbtMainTable').DataTable().clear();
+            $('#bpsRbtMainTable').DataTable().destroy();
+            initTableFunctionsRBT();
+            $('#bpsRbtMainTable').DataTable().clear().rows.add(oJSON).draw();
+            initMenuCards(oJSON[0]);
+        });
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        p("Request failed for RBT ");
+    });
+}
+
 $(document).ready(function () {
     initDisplayConfiguration();
     initTableFunctionsRBT();

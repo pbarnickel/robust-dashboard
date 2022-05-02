@@ -8,7 +8,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/datatables.min.css" rel="stylesheet">
     <link href="/css/dashboard.min.css" rel="stylesheet">
-    <link href="/css/styles.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
 
@@ -202,19 +202,25 @@
                                 <div class="col">
                                     <div class="card bpsCard">
                                         <iframe class="bpsVideo" src="https://www.youtube.com/embed/Cpkb0WkYHkc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        <!--div class="card-body">
-                                            <h5 class="card-title"></h5>
-                                            <p class="card-text"></p>
-                                        </div-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="bpsT1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlT1" class="h2">RBT Burned Daily</h1>
-                            <?php
-                            include('php/loadDashboard.php');
-                            ?>
+                            <table class="table" id="bpsRbtMainTable">
+                                <thead>
+                                    <tr class="table-dark">
+                                        <th scope="col" class="align-middle">Date</th>
+                                        <th scope="col" class="align-middle">RBT Burned Total</th>
+                                        <th scope="col" class="align-middle">RBT Burned at Day</th>
+                                        <th scope="col" class="align-middle">RBT Current Supply</th>
+                                        <th scope="col" class="align-middle">RBT Available Supply</th>
+                                        <th scope="col" class="align-middle">Market Cap</th>
+                                        <th scope="col" class="align-middle">Holders</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                         <div id="bpsC1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlC1" class="h2">RBT Burned Daily</h1>
@@ -252,7 +258,7 @@
                         <div id="bpsRbsT1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsT1" class="h2">RBS Total Supply Daily</h1>
                             <?php
-                            include('php/loadDashboardRBS.php');
+                            //include('php/loadDashboardRBS.php');
                             ?>
                         </div>
                         <div id="bpsRbsC1" class="bpsTarget bpsHidden">
@@ -318,14 +324,14 @@
         </div>
     </footer>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/datatables.min.js"></script>
-    <script src="/js/feather.min.js"></script>
-    <script src="/js/chart.js"></script>
-    <script src="/js/data.json"></script>
-    <script src="/js/dataRBS.json"></script>
-    <script src="/js/main.min.js"></script>
+    <script src="/js/jquery.min.js" async></script>
+    <script src="/js/bootstrap.bundle.min.js" async></script>
+    <script src="/js/datatables.min.js" async></script>
+    <script src="/js/feather.min.js" async></script>
+    <script src="/js/chart.js" async></script>
+    <script src="/js/data.json" async></script>
+    <script src="/js/dataRBS.json" async></script>
+    <script src="/js/main.js" async></script>
 </body>
 
 </html>
