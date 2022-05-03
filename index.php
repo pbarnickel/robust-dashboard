@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Robust Dashboard</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/datatables.min.css" rel="stylesheet">
-    <link href="/css/dashboard.min.css" rel="stylesheet">
+    <link href="/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/lib/datatables.min.css" rel="stylesheet">
+    <link href="/css/lib/dashboard.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
@@ -69,55 +69,55 @@
                     </div>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a id="bpsMenuItemT1" class="bpsMenuItem nav-link" data-target="bpsT1">
+                            <a id="bpsMenuItemRbtT1" class="bpsMenuItem nav-link" data-target="bpsRbtT1">
                                 <span data-feather="align-justify"></span>
                                 RBT Burned Daily
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC1" class="bpsMenuItem nav-link" data-target="bpsC1">
+                            <a id="bpsMenuItemRbtC1" class="bpsMenuItem nav-link" data-target="bpsRbtC1">
                                 <span data-feather="trending-up"></span>
                                 RBT Burned Daily
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC3" class="bpsMenuItem nav-link" data-target="bpsC3">
+                            <a id="bpsMenuItemRbtC3" class="bpsMenuItem nav-link" data-target="bpsRbtC3">
                                 <span data-feather="trending-up"></span>
                                 RBT Burned Daily
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC4" class="bpsMenuItem nav-link" data-target="bpsC4">
+                            <a id="bpsMenuItemRbtC4" class="bpsMenuItem nav-link" data-target="bpsRbtC4">
                                 <span data-feather="trending-up"></span>
                                 RBT Burned Monthly
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC5" class="bpsMenuItem nav-link" data-target="bpsC5">
+                            <a id="bpsMenuItemRbtC5" class="bpsMenuItem nav-link" data-target="bpsRbtC5">
                                 <span data-feather="trending-up"></span>
                                 RBT Burned Monthly
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC2" class="bpsMenuItem nav-link" data-target="bpsC2">
+                            <a id="bpsMenuItemRbtC2" class="bpsMenuItem nav-link" data-target="bpsRbtC2">
                                 <span data-feather="trending-up"></span>
                                 RBT Burned Total
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC6" class="bpsMenuItem nav-link" data-target="bpsC6">
+                            <a id="bpsMenuItemRbtC6" class="bpsMenuItem nav-link" data-target="bpsRbtC6">
                                 <span data-feather="trending-up"></span>
                                 RBT Supply Daily
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC7" class="bpsMenuItem nav-link" data-target="bpsC7">
+                            <a id="bpsMenuItemRbtC7" class="bpsMenuItem nav-link" data-target="bpsRbtC7">
                                 <span data-feather="trending-up"></span>
                                 RBT Market Cap Daily
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="bpsMenuItemC8" class="bpsMenuItem nav-link" data-target="bpsC8">
+                            <a id="bpsMenuItemRbtC8" class="bpsMenuItem nav-link" data-target="bpsRbtC8">
                                 <span data-feather="trending-up"></span>
                                 RBT Holders Daily
                             </a>
@@ -192,12 +192,12 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                     <div id="content" class="container">
+
                         <div id="bpsHome" class="bpsTarget">
                             <h1 id="bpsHdlHome" class="h2">Robust Dashboard</h1>
                             <p class="lead">This application serves as a general monitoring tool for robust projects. This is not part of the official Robust project. There is no guarantee for data consistency.</p>
                             <p class="lead">If you also like my work on YouTube, I would be very happy about a subscription!</p>
                             <p class="lead">Due to the fact that the data is persisted by the robust API once a day at midnight in the London time zone (UTC+01:00), there may be deviations compared to other data on other platforms. The data is also only persisted at this point in time. High and low points throughout the day are therefore not taken into account in the data display.</p>
-
                             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-4">
                                 <div class="col">
                                     <div class="card bpsCard">
@@ -206,60 +206,69 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="bpsT1" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlT1" class="h2">RBT Burned Daily</h1>
+
+                        <div id="bpsRbsT1" class="bpsTarget bpsHidden">
+                            <h1 id="bpsRbsHdlT1" class="h2">RBT Burned Daily</h1>
                             <table class="table" id="bpsRbtMainTable">
                                 <thead>
                                     <tr class="table-dark">
                                         <th scope="col" class="align-middle">Date</th>
-                                        <th scope="col" class="align-middle">RBT Burned Total</th>
-                                        <th scope="col" class="align-middle">RBT Burned at Day</th>
-                                        <th scope="col" class="align-middle">RBT Current Supply</th>
-                                        <th scope="col" class="align-middle">RBT Available Supply</th>
+                                        <th scope="col" class="align-middle">Burned Total</th>
+                                        <th scope="col" class="align-middle">Burned at Day</th>
+                                        <th scope="col" class="align-middle">Current Supply</th>
+                                        <th scope="col" class="align-middle">Available Supply</th>
                                         <th scope="col" class="align-middle">Market Cap</th>
                                         <th scope="col" class="align-middle">Holders</th>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
-                        <div id="bpsC1" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC1" class="h2">RBT Burned Daily</h1>
-                            <canvas id="idChartBurnHistory"></canvas>
+                        <div id="bpsRbtC1" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC1" class="h2">RBT Burned Daily</h1>
+                            <canvas id="idChartRbt1"></canvas>
                         </div>
-                        <div id="bpsC3" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC3" class="h2">RBT Burned Daily</h1>
-                            <canvas id="idChartBurnHistoryCurrentYear"></canvas>
+                        <div id="bpsRbtC3" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC3" class="h2">RBT Burned Daily</h1>
+                            <canvas id="idChartRbt3"></canvas>
                         </div>
-                        <div id="bpsC4" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC4" class="h2">RBT Burned Monthly</h1>
-                            <canvas id="idChartBurnHistoryMonthly"></canvas>
+                        <div id="bpsRbtC4" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC4" class="h2">RBT Burned Monthly</h1>
+                            <canvas id="idChartRbt4"></canvas>
                         </div>
-                        <div id="bpsC5" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC5" class="h2">RBT Burned Monthly</h1>
-                            <canvas id="idChartBurnHistoryMonthlyCurrentYear"></canvas>
+                        <div id="bpsRbtC5" class="bpsTarget bpsHidden">
+                            <h1 id="bpsRbtHdlC5" class="h2">RBT Burned Monthly</h1>
+                            <canvas id="idChartRbt5"></canvas>
                         </div>
-                        <div id="bpsC2" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC2" class="h2">RBT Burned Total</h1>
-                            <canvas id="idChartTotalBurnHistory"></canvas>
+                        <div id="bpsRbtC2" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC2" class="h2">RBT Burned Total</h1>
+                            <canvas id="idChartRbt2"></canvas>
                         </div>
-                        <div id="bpsC6" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC6" class="h2">RBT Supply</h1>
-                            <canvas id="idChartSupply"></canvas>
+                        <div id="bpsRbtC6" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC6" class="h2">RBT Supply</h1>
+                            <canvas id="idChartRbt6"></canvas>
                         </div>
-                        <div id="bpsC7" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC7" class="h2">RBT Market Cap</h1>
-                            <canvas id="idChartMarketCap"></canvas>
+                        <div id="bpsRbtC7" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC7" class="h2">RBT Market Cap</h1>
+                            <canvas id="idChartRbt7"></canvas>
                         </div>
-                        <div id="bpsC8" class="bpsTarget bpsHidden">
-                            <h1 id="bpsHdlC8" class="h2">RBT Holders</h1>
-                            <canvas id="idChartHolders"></canvas>
+                        <div id="bpsRbtC8" class="bpsTarget bpsHidden">
+                            <h1 id="bpsHdlRbtC8" class="h2">RBT Holders</h1>
+                            <canvas id="idChartRbt8"></canvas>
                         </div>
 
                         <div id="bpsRbsT1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsT1" class="h2">RBS Total Supply Daily</h1>
-                            <?php
-                            //include('php/loadDashboardRBS.php');
-                            ?>
+                            <table class="table" id="bpsRbsMainTable">
+                                <thead>
+                                    <tr class="table-dark">
+                                        <th scope="col" class="align-middle">Date</th>
+                                        <th scope="col" class="align-middle">Supply Total</th>
+                                        <th scope="col" class="align-middle">Supply at Day</th>
+                                        <th scope="col" class="align-middle">Market Cap</th>
+                                        <th scope="col" class="align-middle">Holders</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                         <div id="bpsRbsC1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsC1" class="h2">RBS Total Supply</h1>
@@ -324,13 +333,16 @@
         </div>
     </footer>
 
-    <script src="/js/jquery.min.js" async></script>
-    <script src="/js/bootstrap.bundle.min.js" async></script>
-    <script src="/js/datatables.min.js" async></script>
-    <script src="/js/feather.min.js" async></script>
-    <script src="/js/chart.js" async></script>
-    <script src="/js/data.json" async></script>
-    <script src="/js/dataRBS.json" async></script>
+    <script src="/js/lib/jquery.min.js" async></script>
+    <script src="/js/lib/bootstrap.bundle.min.js" async></script>
+    <script src="/js/lib/datatables.min.js" async></script>
+    <script src="/js/lib/feather.min.js" async></script>
+    <script src="/js/lib/chart.min.js" async></script>
+    <script src="/js/data/RBT.json" async></script>
+    <script src="/js/data/RBS.json" async></script>
+    <script src="/js/requests.js" async></script>
+    <script src="/js/tables.js" async></script>
+    <script src="/js/charts.js" async></script>
     <script src="/js/main.js" async></script>
 </body>
 

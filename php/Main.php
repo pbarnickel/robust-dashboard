@@ -1,206 +1,116 @@
 <?php
 
-/**
- * Copyright bp-sol.de 2021
- * 
- * Main-Controller for Robust Dashboard
- * 
- */
-
 namespace BPS\RobustDashboard;
 
 use BPS\RobustDashboard\Constants;
-use BPS\RobustDashboard\API\RequestAPI;
 use BPS\RobustDashboard\API\DatabaseAPI;
-use BPS\RobustDashboard\Model\RbsHistory;
-use BPS\RobustDashboard\Model\RbsHistoryEntry;
-use BPS\RobustDashboard\Model\RobustBurnHistory;
-use BPS\RobustDashboard\Model\RobustBurnHistoryEntry;
+use BPS\RobustDashboard\API\RobustAPI;
+use BPS\RobustDashboard\Model\EntryRBT;
+use BPS\RobustDashboard\Model\HistoryRBT;
+use BPS\RobustDashboard\Model\HistoryRBS;
 
 class Main implements Constants
 {
-
-    protected $oDatabaseAPI;
-    protected $oRobustBurnHistory;
-    protected $oRbsHistory;
-    protected $oCurrentSituation;
-    protected $oRbsCurrentSituation;
+    protected $databaseAPI;
+    protected $historyRBT;
+    protected $historyRBS;
+    protected $currentRBT;
+    protected $currentRBS;
 
     public function __construct()
     {
         $this->oDatabaseAPI = new DatabaseAPI();
-        $this->oRobustBurnHistory = new RobustBurnHistory();
-        $this->oRbsHistory = new RbsHistory();
+        $this->initHistoryRBT();
+        $this->initHistoryRBS();
+        $this->initCurrentRBT();
+        $this->initCurrentRBS();
     }
 
-    public function initDashboard()
+    public function initHistoryRBT()
     {
-        $this->initRobustBurnHistory();
-        $this->initCurrentSituation();
-        $this->printRobustBurnHistory();
-        $this->initRobustBurnHistoryChart();
-    }
-
-    public function initDashboardRBS()
-    {
-        $this->initRbsHistory();
-        $this->initRbsCurrentSituation();
-        $this->printRbsHistory();
-        $this->initRbsHistoryChart();
-    }
-
-    public function runDailyScript()
-    {
-        $this->initRobustBurnHistory();
-        $this->updateRobustBurnHistory();
-        $this->updateRbsHistory();
-    }
-
-    public function initRobustBurnHistory()
-    {
-
-        $oRobustBurnHistory = $this->oDatabaseAPI->readRobustBurnHistory();
-
-        if ($oRobustBurnHistory->num_rows > 0) {
-            while ($oRow = $oRobustBurnHistory->fetch_assoc()) {
-                $oEntry = new RobustBurnHistoryEntry(
-                    $oRow[Constants::DB_TABLE_ROBUST_BURNED_HISTORY_ID],
-                    $oRow[Constants::DB_TABLE_ROBUST_BURNED_HISTORY_DATE],
-                    $oRow[Constants::DB_TABLE_ROBUST_BURNED_HISTORY_TB],
-                    $oRow[Constants::DB_TABLE_ROBUST_BURNED_HISTORY_DB],
-                    $oRow[Constants::DB_TABLE_ROBUST_BURNED_HISTORY_MC],
-                    $oRow[Constants::DB_TABLE_ROBUST_BURNED_HISTORY_HOLDERS]
+        $this->historyRBT = new HistoryRBT();
+        $history = $this->databaseAPI->readHistory(Constants::DB_RBT_SELECT_HISTORY);
+        if ($history->num_rows > 0) {
+            while ($row = $history->fetch_assoc()) {
+                $entry = new EntryRBT(
+                    $row[Constants::DB_ENTRY_ID],
+                    $row[Constants::DB_ENTRY_DATE],
+                    $row[Constants::DB_ENTRY_RBT_TOTAL_BURNED],
+                    $row[Constants::DB_ENTRY_RBT_BURNED],
+                    $row[Constants::DB_ENTRY_MARKET_CAP],
+                    $row[Constants::DB_ENTRY_HOLDERS]
                 );
-                $this->oRobustBurnHistory->addEntry($oEntry);
+                $this->historyRBT->addEntry($entry);
             }
         }
     }
 
-    public function initRbsHistory()
+    public function initHistoryRBS()
     {
-        $oRbsHistory = $this->oDatabaseAPI->readRbsHistory();
-
-        if ($oRbsHistory->num_rows > 0) {
-            while ($oRow = $oRbsHistory->fetch_assoc()) {
-                $oEntry = new RbsHistoryEntry(
-                    $oRow[Constants::DB_TABLE_RBS_HISTORY_ID],
-                    $oRow[Constants::DB_TABLE_RBS_HISTORY_DATE],
-                    $oRow[Constants::DB_TABLE_RBS_HISTORY_TS],
-                    $oRow[Constants::DB_TABLE_RBS_HISTORY_DS],
-                    $oRow[Constants::DB_TABLE_RBS_HISTORY_MC],
-                    $oRow[Constants::DB_TABLE_RBS_HISTORY_HOLDERS]
+        $this->historyRBS = new HistoryRBS();
+        $history = $this->databaseAPI->readHistory(Constants::DB_RBS_SELECT_HISTORY);
+        if ($history->num_rows > 0) {
+            while ($row = $history->fetch_assoc()) {
+                $entry = new EntryRBT(
+                    $row[Constants::DB_ENTRY_ID],
+                    $row[Constants::DB_ENTRY_DATE],
+                    $row[Constants::DB_ENTRY_RBS_TOTAL_SUPPLY],
+                    $row[Constants::DB_ENTRY_RBS_SUPPLY],
+                    $row[Constants::DB_ENTRY_MARKET_CAP],
+                    $row[Constants::DB_ENTRY_HOLDERS]
                 );
-                $this->oRbsHistory->addEntry($oEntry);
+                $this->historyRBS->addEntry($entry);
             }
         }
     }
 
-    public function initCurrentSituation()
+    public function initCurrentRBT()
     {
-        $oLastEntry = $this->oRobustBurnHistory->getLastEntry();
-        $sCurrentBurned = RequestAPI::getTotalBurned();
-        $dCurrentBurned = bcadd($sCurrentBurned, '0', 2);
-        if ($oLastEntry) {
-            $dLastBurned = bcadd($oLastEntry->getTotalBurned(), '0', 2);
-            $dDifferenceBurned = $sCurrentBurned - $dLastBurned;
-        } else {
-            $dDifferenceBurned = $dCurrentBurned;
-        }
-        $dDifferenceBurned = bcadd($dDifferenceBurned, '0', 2);
-        $sMarketCap = RequestAPI::getMarketCap();
-        $dMarketCap = bcadd($sMarketCap, '0', 2);
-        $sHolders = RequestAPI::getHolders();
-
-        $this->oCurrentSituation = new RobustBurnHistoryEntry(NULL, date('d.m.Y'), $dCurrentBurned, $dDifferenceBurned, $dMarketCap, $sHolders);
+        $lastEntry = $this->historyRBT->getLastEntry();
+        $current = RobustAPI::requestDataRBT();
+        //TODO: calc and set burned
+        $this->currentRBT = $current;
     }
 
-    public function initRbsCurrentSituation()
+    public function initCurrentRBS()
     {
-        $oLastEntry = $this->oRbsHistory->getLastEntry();
-        $sTotalSupply = RequestAPI::getRbsTotalSupply();
-        $dTotalSupply = bcadd($sTotalSupply, '0', 2);
-        if ($oLastEntry) {
-            $dLastSupply = bcadd($oLastEntry->getTotalSupply(), '0', 2);
-            $dDifferenceSupply = $sTotalSupply - $dLastSupply;
-        } else {
-            $dDifferenceSupply = $dTotalSupply;
-        }
-        $dDifferenceSupply = bcadd($dDifferenceSupply, '0', 2);
-        $sMarketCap = RequestAPI::getRbsMarketCap();
-        $dMarketCap = bcadd($sMarketCap, '0', 2);
-        $sHolders = RequestAPI::getRbsHolders();
-
-        $this->oRbsCurrentSituation = new RbsHistoryEntry(NULL, date('d.m.Y'), $dTotalSupply, $dDifferenceSupply, $dMarketCap, $sHolders);
+        $lastEntry = $this->historyRBS->getLastEntry();
+        $current = RobustAPI::requestDataRBS();
+        //TODO: calc and set burned
+        $this->currentRBS = $current;
     }
 
-    public function printRobustBurnHistory()
+    public function updateDataRBT()
     {
-        $sOutput = $this->oRobustBurnHistory->getHTML($this->oCurrentSituation);
-        echo $sOutput;
-    }
-
-    public function printRbsHistory()
-    {
-        $sOutput = $this->oRbsHistory->getHTML($this->oRbsCurrentSituation);
-        echo $sOutput;
-    }
-
-    public function updateRobustBurnHistory()
-    {
-        $oLastEntry = $this->oRobustBurnHistory->getLastEntry();
-        $newEntry = $this->oDatabaseAPI->updateRobustBurnHistory($oLastEntry);
-        if ($newEntry) {
-            $this->oRobustBurnHistory->addNewEntry($newEntry);
+        $lastEntry = $this->historyRBT->getLastEntry();
+        $entry = $this->databaseAPI->updateHistoryRBT($lastEntry);
+        if ($entry) {
+            $this->historyRBT->addNewEntry($entry);
         }
     }
 
-    public function updateRbsHistory()
+    public function updateDataRBS()
     {
-        $oLastEntry = $this->oRbsHistory->getLastEntry();
-        $newEntry = $this->oDatabaseAPI->updateRbsHistory($oLastEntry);
-        if ($newEntry) {
-            $this->oRbsHistory->addNewEntry($newEntry);
+        $lastEntry = $this->historyRBS->getLastEntry();
+        $entry = $this->databaseAPI->updateHistoryRBS($lastEntry);
+        if ($entry) {
+            $this->historyRBT->addNewEntry($entry);
         }
     }
 
-    public function runMigrationScript()
+    public function exportDataRBT()
     {
-
-        $sJsonFileContents = file_get_contents(Constants::JSON_ROBUST_BURNED_HISTORY_URL);
-        $aHistory = json_decode($sJsonFileContents, true);
-
-        $iLen = sizeof($aHistory);
-        $dTotalBurned = "4950.00";
-        for ($i = 0; $i < $iLen; $i++) {
-            $dTotalBurned =  bcadd($dTotalBurned, '0', 2) + bcadd($aHistory[$i]["Amount"], '0', 2);
-            $oEntry = new RobustBurnHistoryEntry(NULL, $aHistory[$i]["Day"], $dTotalBurned, $aHistory[$i]["Amount"], NULL, NULL);
-            $this->oRobustBurnHistory->addEntry($oEntry);
-        }
-
-        $this->oDatabaseAPI->migrateRobustBurnHistory($this->oRobustBurnHistory);
+        $history = $this->historyRBT->getEntries();
+        array_unshift($history, $this->currentRBT);
+        $json = json_encode($history);
+        file_put_contents("js/data/RBT.json", $json);
     }
 
-    public function initRobustBurnHistoryChart()
+    public function exportDataRBS()
     {
-        $aHistory = $this->oRobustBurnHistory->getEntries();
-        array_unshift($aHistory, $this->oCurrentSituation);
-        $oJSON = json_encode($aHistory);
-        if (file_put_contents("js/data.json", $oJSON)) {
-            //Success
-        } else {
-            //Error
-        }
-    }
-
-    public function initRbsHistoryChart()
-    {
-        $aHistory = $this->oRbsHistory->getEntries();
-        array_unshift($aHistory, $this->oRbsCurrentSituation);
-        $oJSON = json_encode($aHistory);
-        if (file_put_contents("js/dataRBS.json", $oJSON)) {
-            //Success
-        } else {
-            //Error
-        }
+        $history = $this->historyRBS->getEntries();
+        array_unshift($history, $this->currentRBS);
+        $json = json_encode($history);
+        file_put_contents("js/data/RBS.json", $json);
     }
 }
