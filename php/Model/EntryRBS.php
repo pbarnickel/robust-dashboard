@@ -1,8 +1,9 @@
 <?php
 
 namespace BPS\RobustDashboard\Model;
+use BadFunctionCallException;
 
-class EntryRBS
+class EntryRBS extends Entry implements \JsonSerializable
 {
     protected $totalSupply;
     protected $supply;
@@ -35,5 +36,16 @@ class EntryRBS
     public function setSupply($supply)
     {
         $this->supply = $supply;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'Date' => $this->date,
+            'TotalSupply' => $this->totalSupply,
+            'Supply' => $this->supply,
+            'MarketCap' => $this->marketCap,
+            'Holders' => $this->holders
+        ];
     }
 }

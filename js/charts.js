@@ -1,13 +1,13 @@
 function initCharts() {
     $.getJSON("/js/data/RBT.json", function (oJSON) {
-        initChartRbt1(oJSON);
-        initChartRbt2(oJSON);
-        initChartRbt3(oJSON);
-        initChartRbt4(oJSON);
-        initChartRbt5(oJSON);
-        initChartRbt6(oJSON);
-        initChartRbt7(oJSON);
-        initChartRbt8(oJSON);
+        initChartRbtC1(oJSON);
+        initChartRbtC2(oJSON);
+        initChartRbtC3(oJSON);
+        initChartRbtC4(oJSON);
+        initChartRbtC5(oJSON);
+        initChartRbtC6(oJSON);
+        initChartRbtC7(oJSON);
+        initChartRbtC8(oJSON);
 
         initMenuCardsRBT(oJSON[0]);
     });

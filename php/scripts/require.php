@@ -1,6 +1,7 @@
 <?php
 
 require_once('../Constants.php');
+require_once('../Model/Entry.php');
 require_once('../Model/EntryRBT.php');
 require_once('../Model/EntryRBS.php');
 require_once('../Model/History.php');

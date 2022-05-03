@@ -8,8 +8,8 @@ $(document).ready(function () {
     feather.replace()
     initHeadlines();
     $.when(requestData()).then(function () {
-        initTables();
-        initCharts();
+        //initTables();
+        //initCharts();
     });
 });
 

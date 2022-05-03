@@ -1,8 +1,9 @@
 <?php
 
 namespace BPS\RobustDashboard\Model;
+use BadFunctionCallException;
 
-class EntryRBT
+class EntryRBT extends Entry implements \JsonSerializable
 {
     protected $totalBurned;
     protected $burned;
@@ -35,5 +36,16 @@ class EntryRBT
     public function setBurned($burned)
     {
         $this->burned = $burned;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'Date' => $this->date,
+            'TotalBurned' => $this->totalBurned,
+            'Burned' => $this->burned,
+            'MarketCap' => $this->marketCap,
+            'Holders' => $this->holders
+        ];
     }
 }
