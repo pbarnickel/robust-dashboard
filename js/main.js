@@ -1,6 +1,8 @@
 const RBT_INIT_TOTAL_SUPPLY = 100000;
 const RBT_LOCKED_SUPPLY = 50000;
 const RBT_MANUALLY_BURN = 4950;
+var oTableRBT;
+var oTableRBS;
 var oDataRBT;
 var oDataRBS;
 
@@ -8,13 +10,35 @@ $(document).ready(function () {
     feather.replace()
     initHeadlines();
     $.when(requestData()).then(function () {
-        //initTables();
         //initCharts();
     });
 });
 
 function p(sText) {
     console.log(sText);
+}
+
+function convertDate(sDate) {
+    if (sDate) {
+        return sDate.substr(6, 4) + '/' + sDate.substr(3, 2) + '/' + sDate.substr(0, 2);
+    }
+    return sDate;
+}
+
+function convertFloat(sFloat) {
+    if (sFloat) {
+        return parseFloat(sFloat).toLocaleString({
+            maximumFractionDigits: 2
+        });
+    }
+    return sFloat;
+}
+
+function convertInt(sInt) {
+    if (sInt) {
+        return parseInt(sInt).toLocaleString();
+    }
+    return sInt;
 }
 
 function initHeadlines() {

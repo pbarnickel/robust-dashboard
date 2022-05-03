@@ -1,23 +1,23 @@
 function requestData() {
     var request = $.ajax({
         url: "/php/scripts/loadData.php",
-        method: "POST",
-        data: {}
+        method: "GET",
     });
 
     request.done(function (sMsg) {
-        p(sMsg);
         $.getJSON("/js/data/RBT.json", function (oJSON) {
-            debugger;
+            oDataRBT = oJSON;
+            $('.bpsSpinnerRBT').remove();
+            initTableRBT();
         });
     });
 
-    request.done(function (sMsg) {
-        p(sMsg);
+    /*request.done(function (sMsg) {
         $.getJSON("/js/data/RBS.json", function (oJSON) {
-            debugger;
+            oDataRBS = oJSON;
+            initTableRBS();
         });
-    });
+    });*/
 
     request.fail(function (jqXHR, textStatus) {
         p("Request failed for loading data");
