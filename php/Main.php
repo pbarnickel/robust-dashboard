@@ -19,7 +19,7 @@ class Main implements Constants
 
     public function __construct()
     {
-        $this->oDatabaseAPI = new DatabaseAPI();
+        $this->databaseAPI = new DatabaseAPI();
         $this->initHistoryRBT();
         $this->initHistoryRBS();
         $this->initCurrentRBT();
@@ -83,7 +83,7 @@ class Main implements Constants
     public function updateDataRBT()
     {
         $lastEntry = $this->historyRBT->getLastEntry();
-        $entry = $this->databaseAPI->updateHistoryRBT($lastEntry);
+        $entry = $this->databaseAPI->updateHistoryRBT($lastEntry, $this->currentRBT);
         if ($entry) {
             $this->historyRBT->addNewEntry($entry);
         }
@@ -92,7 +92,7 @@ class Main implements Constants
     public function updateDataRBS()
     {
         $lastEntry = $this->historyRBS->getLastEntry();
-        $entry = $this->databaseAPI->updateHistoryRBS($lastEntry);
+        $entry = $this->databaseAPI->updateHistoryRBS($lastEntry, $this->currentRBS);
         if ($entry) {
             $this->historyRBT->addNewEntry($entry);
         }
@@ -103,7 +103,7 @@ class Main implements Constants
         $history = $this->historyRBT->getEntries();
         array_unshift($history, $this->currentRBT);
         $json = json_encode($history);
-        file_put_contents("js/data/RBT.json", $json);
+        file_put_contents("./../../js/data/RBT.json", $json);
     }
 
     public function exportDataRBS()
@@ -111,6 +111,6 @@ class Main implements Constants
         $history = $this->historyRBS->getEntries();
         array_unshift($history, $this->currentRBS);
         $json = json_encode($history);
-        file_put_contents("js/data/RBS.json", $json);
+        file_put_contents("./../../js/data/RBS.json", $json);
     }
 }

@@ -4,17 +4,18 @@ const RBT_MANUALLY_BURN = 4950;
 var oDataRBT;
 var oDataRBS;
 
+$(document).ready(function () {
+    feather.replace()
+    initHeadlines();
+    $.when(requestData()).then(function () {
+        initTables();
+        initCharts();
+    });
+});
+
 function p(sText) {
     console.log(sText);
 }
-
-$(document).ready(function () {
-    feather.replace();
-    initHeadlines();
-    requestData();
-    initTables();
-    initCharts();
-});
 
 function initHeadlines() {
     var iCurrentYear = new Date().getFullYear();

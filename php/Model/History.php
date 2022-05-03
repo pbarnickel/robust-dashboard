@@ -9,7 +9,7 @@ class History implements Constants
 
     public function __construct()
     {
-        $this->aEntries = array();
+        $this->entries = array();
     }
 
     public function getSize()

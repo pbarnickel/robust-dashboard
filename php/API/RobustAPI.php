@@ -18,7 +18,7 @@ class RobustAPI extends API implements Constants
         ob_implicit_flush(true);
         if (ob_get_contents()) {
             ob_end_clean();
-            ob_end_flush();
+            //ob_end_flush();
         }
 
         $result = curl_exec($curl);

@@ -5,15 +5,17 @@ function requestData() {
         data: {}
     });
 
-    request.done(function (msg) {
+    request.done(function (sMsg) {
+        p(sMsg);
         $.getJSON("/js/data/RBT.json", function (oJSON) {
-            //TODO
+            debugger;
         });
     });
 
-    request.done(function (msg) {
+    request.done(function (sMsg) {
+        p(sMsg);
         $.getJSON("/js/data/RBS.json", function (oJSON) {
-            //TODO
+            debugger;
         });
     });
 

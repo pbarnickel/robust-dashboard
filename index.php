@@ -236,7 +236,7 @@
                             <canvas id="idChartRbt4"></canvas>
                         </div>
                         <div id="bpsRbtC5" class="bpsTarget bpsHidden">
-                            <h1 id="bpsRbtHdlC5" class="h2">RBT Burned Monthly</h1>
+                            <h1 id="bpsHdlRbtC5" class="h2">RBT Burned Monthly</h1>
                             <canvas id="idChartRbt5"></canvas>
                         </div>
                         <div id="bpsRbtC2" class="bpsTarget bpsHidden">
