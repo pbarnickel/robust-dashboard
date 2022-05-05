@@ -1,6 +1,4 @@
-function initCharts() {
-
-    //RBT
+function initChartsRBT() {
     initMenuCardsRBT();
     initChartRbtC1();
     initChartRbtC2();
@@ -10,13 +8,14 @@ function initCharts() {
     initChartRbtC6();
     initChartRbtC7();
     initChartRbtC8();
+}
 
-    //RBS
-    // initMenuCardsRBS();
-    // initChartRbsC1();
-    // initChartRbsC2();
-    // initChartRbsC3();
-    // initChartRbsC4();
+function initChartsRBS(){
+    initMenuCardsRBS();
+    initChartRbsC1();
+    initChartRbsC2();
+    initChartRbsC3();
+    initChartRbsC4();
 }
 
 function initMenuCardsRBT() {
@@ -32,7 +31,7 @@ function initMenuCardsRBT() {
 
 function initMenuCardsRBS() {
     var oData = oDataRBS[0];
-    $('#bpsRbsTotalSupply').html(parseFloat(oData.Total).toLocaleString() + " RBS");
+    $('#bpsRbsTotalSupply').html(parseFloat(oData.TotalSupply).toLocaleString() + " RBS");
     $('#bpsRbsDifferenceSupply').html(parseFloat(oData.Supply).toLocaleString() + " RBS");
     $('#bpsRbsMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
     $('#bpsRbsHolders').html(oData.Holders);

@@ -11,16 +11,18 @@ function requestData() {
             $.when(initTableRBT()).then(function () {
                 $('#bpsRbtMainTable').parent().addClass('table-responsive');
             });
-            initCharts();
+            initChartsRBT();
         });
-    });
 
-    /*request.done(function (sMsg) {
         $.getJSON("/js/data/RBS.json", function (oJSON) {
             oDataRBS = oJSON;
-            initTableRBS();
+            $('.bpsSpinnerRBS').remove();
+            $.when(initTableRBS()).then(function () {
+                $('#bpsRbsMainTable').parent().addClass('table-responsive');
+            });
+            initChartsRBS();
         });
-    });*/
+    });
 
     request.fail(function (jqXHR, textStatus) {
         p("Request failed for loading data");

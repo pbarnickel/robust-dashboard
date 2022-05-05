@@ -20,7 +20,7 @@ class RobustAPI extends API implements Constants
         ob_implicit_flush(true);
         if (ob_get_contents()) {
             ob_end_clean();
-            //ob_end_flush();
+            ob_end_flush();
         }
 
         $result = curl_exec($curl);
@@ -60,7 +60,7 @@ class RobustAPI extends API implements Constants
 
     private static function mapResultToEntryRBS($result)
     {
-        $entry = new EntryRBS(NULL, date('d.m.Y'), NULL, NULL, NULL, NULL);
+        $entry = new EntryRBS(NULL, date('d.m.Y'), '1000', '2000', '3000', '4000');
         return $entry;
     }
 }

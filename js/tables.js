@@ -4,6 +4,13 @@ function initTableRBT() {
     oTableRBT = $("#bpsRbtMainTable").DataTable();
 }
 
+function initTableRBS() {
+    $.when(renderTableRBS()).then(function () {
+        initDataTableRBS();
+        oTableRBS = $("#bpsRbsMainTable").DataTable();
+    });
+}
+
 $('#bpsMenuItemRbtT1').click(function () {
     $('#bpsRbtMainTable_wrapper').remove();
     $.when(renderTableRBT()).then(function () {
@@ -13,9 +20,16 @@ $('#bpsMenuItemRbtT1').click(function () {
     });
 });
 
-function renderTableRBT() {
+$('#bpsMenuItemRbsT1').click(function () {
+    $('#bpsRbsMainTable_wrapper').remove();
+    $.when(renderTableRBS()).then(function () {
+        initDataTableRBS();
+        $('#bpsRbsT1 *').css('display', '');
+        $('#bpsRbsMainTable').parent().addClass('table-responsive');
+    });
+});
 
-    let oTable = $('#bpsRbtMainTable');
+function renderTableRBT() {
 
     //render head
     let sHtml = '<table class="table table-responsive bpsScrollable" id="bpsRbtMainTable">'
@@ -41,6 +55,30 @@ function renderTableRBT() {
     $('#bpsRbtT1').append(sHtml);
 }
 
+function renderTableRBS() {
+
+    //render head
+    let sHtml = '<table class="table table-responsive bpsScrollable" id="bpsRbsMainTable">'
+    sHtml += '<thead><tr class="table-dark">';
+    sHtml += '<th scope="col" class="align-middle">Date</th>';
+    sHtml += '<th scope="col" class="align-middle">RBS Total Supply</th>';
+    sHtml += '<th scope="col" class="align-middle">RBS Supply at Day</th>';
+    sHtml += '<th scope="col" class="align-middle">Market Cap</th>';
+    sHtml += '<th scope="col" class="align-middle">Holders</th>';
+    sHtml += '</tr></thead><tbody>';
+
+    //render primary row
+    sHtml += renderRowRBS(oDataRBS[0], true);
+
+    //render history
+    for (let i = 1; i < oDataRBS.length; i++) {
+        sHtml += renderRowRBS(oDataRBS[i], false);
+    }
+
+    sHtml += '</table>';
+    $('#bpsRbsT1').append(sHtml);
+}
+
 function renderRowRBT(oRow, bFirst) {
     let sHtml;
     if (bFirst) {
@@ -55,6 +93,21 @@ function renderRowRBT(oRow, bFirst) {
     sHtml += '<td class="align-middle">' + convertFloat(iCurrentSupply) + '</td>';
     let iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
     sHtml += '<td class="align-middle">' + convertFloat(iAvailableSupply) + '</td>';
+    sHtml += '<td class="align-middle">' + convertFloat(oRow.MarketCap) + '</td>';
+    sHtml += '<td class="align-middle">' + convertInt(oRow.Holders) + '</td></tr>';
+    return sHtml;
+}
+
+function renderRowRBS(oRow, bFirst) {
+    let sHtml;
+    if (bFirst) {
+        sHtml = '<tr class="table-primary">';
+    } else {
+        sHtml = '<tr>';
+    }
+    sHtml += '<th scope="row">' + convertDate(oRow.Date) + '</th>';
+    sHtml += '<td class="align-middle">' + convertFloat(oRow.TotalSupply) + '</td>';
+    sHtml += '<td class="align-middle">' + convertFloat(oRow.Supply) + '</td>';
     sHtml += '<td class="align-middle">' + convertFloat(oRow.MarketCap) + '</td>';
     sHtml += '<td class="align-middle">' + convertInt(oRow.Holders) + '</td></tr>';
     return sHtml;
@@ -113,16 +166,8 @@ function initDataTableRBT() {
     });
 }
 
-/*$('#bpsMenuItemRbsT1').click(function () {
-    $('#bpsRbsMainTable').DataTable().clear();
-    $('#bpsRbsMainTable').DataTable().destroy();
-    initTableRBS();
-    $('#bpsRbsMainTable').DataTable().clear().rows.add(oTableRBS).draw();
-});
-
-function initTableRBS() {
-    debugger;
-    let oTable = $('#bpsRbsMainTable').DataTable({
+function initDataTableRBS() {
+    $('#bpsRbsMainTable').DataTable({
         columnDefs: [{
                 targets: 1,
                 type: 'num-fmt'
@@ -164,7 +209,4 @@ function initTableRBS() {
             [0, 'dsc']
         ]
     });
-
-    oTable.rows.add(oDataRBS);
-    oTableRBS = $('#bpsRbsMainTable').DataTable().data();
-}*/
+}

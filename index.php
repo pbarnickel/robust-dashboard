@@ -207,7 +207,7 @@
                             </div>
                         </div>
 
-                        <div id="bpsRbtT1" class="bpsTarget">
+                        <div id="bpsRbtT1" class="bpsTarget bpsHidden">
                             <h1 id="bpsRbtHdlT1" class="h2">RBT Burned Daily</h1>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
@@ -270,7 +270,7 @@
                             </div>
                         </div>
 
-                        <div id="bpsRbsT1" class="bpsTarget bpsHidden">
+                        <div id="bpsRbsT1" class="bpsTarget">
                             <h1 id="bpsHdlRbsT1" class="h2">RBS Total Supply Daily</h1>
                             <table class="table" id="bpsRbsMainTable"></table>
                         </div>
