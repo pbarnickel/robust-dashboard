@@ -32,7 +32,7 @@ class RobustAPI extends API implements Constants
 
     private static function mapResultToEntryRBT($result)
     {
-        $entry = new EntryRBT(NULL, date('d.m.Y'), NULL, NULL, NULL, NULL);
+        $entry = new EntryRBT(NULL, date('d.m.Y'), '1000', '2000', '3000', '4000');
         return $entry;
     }
 

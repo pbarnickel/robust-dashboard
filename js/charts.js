@@ -1,38 +1,37 @@
 function initCharts() {
-    $.getJSON("/js/data/RBT.json", function (oJSON) {
-        initChartRbtC1(oJSON);
-        initChartRbtC2(oJSON);
-        initChartRbtC3(oJSON);
-        initChartRbtC4(oJSON);
-        initChartRbtC5(oJSON);
-        initChartRbtC6(oJSON);
-        initChartRbtC7(oJSON);
-        initChartRbtC8(oJSON);
 
-        initMenuCardsRBT(oJSON[0]);
-    });
+    //RBT
+    initMenuCardsRBT();
+    initChartRbtC1();
+    initChartRbtC2();
+    initChartRbtC3();
+    initChartRbtC4();
+    initChartRbtC5();
+    initChartRbtC6();
+    initChartRbtC7();
+    initChartRbtC8();
 
-    $.getJSON("/js/data/RBS.json", function (oJSON) {
-        initChartRbsC1(oJSON);
-        initChartRbsC2(oJSON);
-        initChartRbsC3(oJSON);
-        initChartRbsC4(oJSON);
-
-        initMenuCardsRBS(oJSON[0]);
-    });
+    //RBS
+    // initMenuCardsRBS();
+    // initChartRbsC1();
+    // initChartRbsC2();
+    // initChartRbsC3();
+    // initChartRbsC4();
 }
 
-function initMenuCardsRBT(oData) {
-    var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.Total;
+function initMenuCardsRBT() {
+    var oData = oDataRBT[0];
+    var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.TotalBurned;
     var iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
-    $('#bpsRbtTotalBurned').html(parseFloat(oData.Total).toLocaleString() + " RBT");
+    $('#bpsRbtTotalBurned').html(parseFloat(oData.TotalBurned).toLocaleString() + " RBT");
     $('#bpsRbtCurrentSupply').html(iCurrentSupply.toLocaleString() + " RBT");
     $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString() + " RBT");
     $('#bpsRbtMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
     $('#bpsRbtHolders').html(oData.Holders);
 }
 
-function initMenuCardsRBS(oData) {
+function initMenuCardsRBS() {
+    var oData = oDataRBS[0];
     $('#bpsRbsTotalSupply').html(parseFloat(oData.Total).toLocaleString() + " RBS");
     $('#bpsRbsDifferenceSupply').html(parseFloat(oData.Supply).toLocaleString() + " RBS");
     $('#bpsRbsMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
@@ -40,14 +39,14 @@ function initMenuCardsRBS(oData) {
 }
 
 // chart 1 - RBT burned daily
-function initChartRbtC1(oJSON) {
+function initChartRbtC1() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
         aData.push({
-            x: oJSON[i].Date,
-            y: oJSON[i].Burned
+            x: oDataRBT[i].Date,
+            y: oDataRBT[i].Burned
         });
     }
 
@@ -79,14 +78,14 @@ function initChartRbtC1(oJSON) {
 }
 
 // chart 2 - RBT burned total
-function initChartRbtC2(oJSON) {
+function initChartRbtC2() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
         aData.push({
-            x: oJSON[i].Date,
-            y: oJSON[i].Total
+            x: oDataRBT[i].Date,
+            y: oDataRBT[i].TotalBurned
         });
     }
 
@@ -118,16 +117,16 @@ function initChartRbtC2(oJSON) {
 }
 
 // chart 3 - RBT burned daily (current year)
-function initChartRbtC3(oJSON) {
+function initChartRbtC3() {
 
     var aData = [];
 
     var iCurrentYear = new Date().getFullYear();
-    for (var i = oJSON.length - 1; i > -1; i--) {
-        if (oJSON[i].Date.indexOf(iCurrentYear.toString()) > -1) {
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
+        if (oDataRBT[i].Date.indexOf(iCurrentYear.toString()) > -1) {
             aData.push({
-                x: oJSON[i].Date,
-                y: oJSON[i].Burned
+                x: oDataRBT[i].Date,
+                y: oDataRBT[i].Burned
             });
         }
     }
@@ -160,20 +159,20 @@ function initChartRbtC3(oJSON) {
 }
 
 // chart 4 - RBT burned monthly
-function initChartRbtC4(oJSON) {
+function initChartRbtC4() {
 
     var aData = [];
     var sKey;
     var bFound;
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
 
-        sKey = oJSON[i].Date.substring(3);
+        sKey = oDataRBT[i].Date.substring(3);
 
         bFound = false;
         for (var j = 0; j < aData.length; j++) {
             if (aData[j].x === sKey) {
-                aData[j].y = String(parseFloat(aData[j].y) + parseFloat(oJSON[i].Burned));
+                aData[j].y = String(parseFloat(aData[j].y) + parseFloat(oDataRBT[i].Burned));
                 bFound = true;
                 break;
             }
@@ -181,7 +180,7 @@ function initChartRbtC4(oJSON) {
         if (!bFound) {
             aData.push({
                 x: sKey,
-                y: oJSON[i].Burned
+                y: oDataRBT[i].Burned
             });
         }
     }
@@ -214,23 +213,23 @@ function initChartRbtC4(oJSON) {
 }
 
 // chart 5 - RBT burned monthly (current year)
-function initChartRbtC5(oJSON) {
+function initChartRbtC5() {
 
     var aData = [];
     var sKey;
     var bFound;
 
     var iCurrentYear = new Date().getFullYear();
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
 
-        if (oJSON[i].Date.indexOf(iCurrentYear.toString()) > -1) {
+        if (oDataRBT[i].Date.indexOf(iCurrentYear.toString()) > -1) {
 
-            sKey = oJSON[i].Date.substring(3);
+            sKey = oDataRBT[i].Date.substring(3);
 
             bFound = false;
             for (var j = 0; j < aData.length; j++) {
                 if (aData[j].x === sKey) {
-                    aData[j].y = String(parseFloat(aData[j].y) + parseFloat(oJSON[i].Burned));
+                    aData[j].y = String(parseFloat(aData[j].y) + parseFloat(oDataRBT[i].Burned));
                     bFound = true;
                     break;
                 }
@@ -238,7 +237,7 @@ function initChartRbtC5(oJSON) {
             if (!bFound) {
                 aData.push({
                     x: sKey,
-                    y: oJSON[i].Burned
+                    y: oDataRBT[i].Burned
                 });
             }
         }
@@ -272,26 +271,26 @@ function initChartRbtC5(oJSON) {
 }
 
 // chart 6 - RBT supply
-function initChartRbtC6(oJSON) {
+function initChartRbtC6() {
 
     var aDataCurrent = [];
     var aDataAvailable = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
 
         aDataCurrent.push({
-            x: oJSON[i].Date,
-            y: RBT_INIT_TOTAL_SUPPLY - RBT_MANUALLY_BURN - oJSON[i].Total
+            x: oDataRBT[i].Date,
+            y: RBT_INIT_TOTAL_SUPPLY - RBT_MANUALLY_BURN - oDataRBT[i].TotalBurned
         });
 
         aDataAvailable.push({
-            x: oJSON[i].Date,
-            y: RBT_INIT_TOTAL_SUPPLY - RBT_LOCKED_SUPPLY - RBT_MANUALLY_BURN - oJSON[i].Total
+            x: oDataRBT[i].Date,
+            y: RBT_INIT_TOTAL_SUPPLY - RBT_LOCKED_SUPPLY - RBT_MANUALLY_BURN - oDataRBT[i].TotalBurned
         });
     }
 
-    iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oJSON[0].Total;
-    iAvailableSupply = RBT_INIT_TOTAL_SUPPLY - RBT_LOCKED_SUPPLY - oJSON[0].Total;
+    iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oDataRBT[0].TotalBurned;
+    iAvailableSupply = RBT_INIT_TOTAL_SUPPLY - RBT_LOCKED_SUPPLY - oDataRBT[0].TotalBurned;
 
     sLabelCS = 'RBT Current Supply: ' + iCurrentSupply.toLocaleString() + ' RBT';
     sLabelAS = 'RBT Available Supply: ' + iAvailableSupply.toLocaleString() + ' RBT';
@@ -335,16 +334,16 @@ function initChartRbtC6(oJSON) {
 }
 
 // chart 7 - RBT market cap
-function initChartRbtC7(oJSON) {
+function initChartRbtC7() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
-        if(oJSON[i].MarketCap){
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
+        if (oDataRBT[i].MarketCap) {
             aData.push({
-                x: oJSON[i].Date,
-                y: oJSON[i].MarketCap
-            });    
+                x: oDataRBT[i].Date,
+                y: oDataRBT[i].MarketCap
+            });
         }
     }
 
@@ -383,16 +382,16 @@ function initChartRbtC7(oJSON) {
 
 
 // chart 8 - RBT holders
-function initChartRbtC8(oJSON) {
+function initChartRbtC8() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
-        if(oJSON[i].Holders){
+    for (var i = oDataRBT.length - 1; i > -1; i--) {
+        if (oDataRBT[i].Holders) {
             aData.push({
-                x: oJSON[i].Date,
-                y: oJSON[i].Holders.replace(',', '')
-            });    
+                x: oDataRBT[i].Date,
+                y: oDataRBT[i].Holders.replace(',', '')
+            });
         }
     }
 
@@ -430,14 +429,14 @@ function initChartRbtC8(oJSON) {
 }
 
 // chart 1 - RBS total supply
-function initChartRbsC1(oJSON) {
+function initChartRbsC1() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBS.length - 1; i > -1; i--) {
         aData.push({
-            x: oJSON[i].Date,
-            y: oJSON[i].Total
+            x: oDataRBS[i].Date,
+            y: oDataRBS[i].TotalSupply
         });
     }
 
@@ -475,14 +474,14 @@ function initChartRbsC1(oJSON) {
 }
 
 // chart 2 - RBS supply daily
-function initChartRbsC2(oJSON) {
+function initChartRbsC2() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
+    for (var i = oDataRBS.length - 1; i > -1; i--) {
         aData.push({
-            x: oJSON[i].Date,
-            y: oJSON[i].Supply
+            x: oDataRBS[i].Date,
+            y: oDataRBS[i].Supply
         });
     }
 
@@ -520,16 +519,16 @@ function initChartRbsC2(oJSON) {
 }
 
 // chart 3 - RBS market cap
-function initChartRbsC3(oJSON) {
+function initChartRbsC3() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
-        if(oJSON[i].MarketCap){
+    for (var i = oDataRBS.length - 1; i > -1; i--) {
+        if (oDataRBS[i].MarketCap) {
             aData.push({
-                x: oJSON[i].Date,
-                y: oJSON[i].MarketCap
-            });    
+                x: oDataRBS[i].Date,
+                y: oDataRBS[i].MarketCap
+            });
         }
     }
 
@@ -568,16 +567,16 @@ function initChartRbsC3(oJSON) {
 
 
 // chart 4 - RBS holders
-function initChartRbsC4(oJSON) {
+function initChartRbsC4() {
 
     var aData = [];
 
-    for (var i = oJSON.length - 1; i > -1; i--) {
-        if(oJSON[i].Holders){
+    for (var i = oDataRBS.length - 1; i > -1; i--) {
+        if (oDataRBS[i].Holders) {
             aData.push({
-                x: oJSON[i].Date,
-                y: oJSON[i].Holders.replace(',', '')
-            });    
+                x: oDataRBS[i].Date,
+                y: oDataRBS[i].Holders.replace(',', '')
+            });
         }
     }
 

@@ -10,7 +10,8 @@ function requestData() {
             $('.bpsSpinnerRBT').remove();
             $.when(initTableRBT()).then(function () {
                 $('#bpsRbtMainTable').parent().addClass('table-responsive');
-            });            
+            });
+            initCharts();
         });
     });
 

@@ -9,6 +9,7 @@ $('#bpsMenuItemRbtT1').click(function () {
     $.when(renderTableRBT()).then(function () {
         initDataTableRBT();
         $('#bpsRbtT1 *').css('display', '');
+        $('#bpsRbtMainTable').parent().addClass('table-responsive');
     });
 });
 

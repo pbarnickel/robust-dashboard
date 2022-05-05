@@ -55,7 +55,7 @@ footer a:hover {
 }
 
 .bpsHidden {
-    display:none;
+    display: none;
 }
 
 .bpsSidebarHdl {
@@ -107,13 +107,12 @@ footer a:hover {
 }
 
 .nav-item {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .paginate_button a,
-.paginate_button a:hover
-{
-    color: rgba(0,0,0,1);
+.paginate_button a:hover {
+    color: rgba(0, 0, 0, 1);
 }
 
 .page-item.active .page-link {
@@ -133,7 +132,7 @@ footer a:hover {
 #bpsLinkImpressum,
 #bpsLinkYouTube,
 #bpsLinkGitHub {
-    display: unset;   
+    display: unset;
     padding: 0;
     color: rgba(50, 50, 50, 0.8);
     transition: all 1s;
@@ -165,6 +164,15 @@ footer a:hover {
 #sidebarMenu {
     overflow-y: scroll;
     padding-bottom: 100px;
+}
+
+#sidebarMenu::-webkit-scrollbar {
+    display: none;
+}
+
+#sidebarMenu {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .bpsSpinnerRBT {

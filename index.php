@@ -215,56 +215,56 @@
                         </div>
                         <div id="bpsRbtC1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC1" class="h2">RBT Burned Daily</h1>
-                            <canvas id="idChartRbt1"></canvas>
+                            <canvas id="idChartRbtC1"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC3" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC3" class="h2">RBT Burned Daily</h1>
-                            <canvas id="idChartRbt3"></canvas>
+                            <canvas id="idChartRbtC3"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC4" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC4" class="h2">RBT Burned Monthly</h1>
-                            <canvas id="idChartRbt4"></canvas>
+                            <canvas id="idChartRbtC4"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC5" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC5" class="h2">RBT Burned Monthly</h1>
-                            <canvas id="idChartRbt5"></canvas>
+                            <canvas id="idChartRbtC5"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC2" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC2" class="h2">RBT Burned Total</h1>
-                            <canvas id="idChartRbt2"></canvas>
+                            <canvas id="idChartRbtC2"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC6" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC6" class="h2">RBT Supply</h1>
-                            <canvas id="idChartRbt6"></canvas>
+                            <canvas id="idChartRbtC6"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC7" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC7" class="h2">RBT Market Cap</h1>
-                            <canvas id="idChartRbt7"></canvas>
+                            <canvas id="idChartRbtC7"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div id="bpsRbtC8" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbtC8" class="h2">RBT Holders</h1>
-                            <canvas id="idChartRbt8"></canvas>
+                            <canvas id="idChartRbtC8"></canvas>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>

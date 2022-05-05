@@ -9,9 +9,7 @@ var oDataRBS;
 $(document).ready(function () {
     feather.replace()
     initHeadlines();
-    $.when(requestData()).then(function () {
-        //initCharts();
-    });
+    requestData();
 });
 
 function p(sText) {
