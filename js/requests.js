@@ -8,7 +8,9 @@ function requestData() {
         $.getJSON("/js/data/RBT.json", function (oJSON) {
             oDataRBT = oJSON;
             $('.bpsSpinnerRBT').remove();
-            initTableRBT();
+            $.when(initTableRBT()).then(function () {
+                $('#bpsRbtMainTable').parent().addClass('table-responsive');
+            });            
         });
     });
 

@@ -1,14 +1,24 @@
 function initTableRBT() {
     renderTableRBT();
-    //initDataTableRBT();
+    initDataTableRBT();
+    oTableRBT = $("#bpsRbtMainTable").DataTable();
 }
+
+$('#bpsMenuItemRbtT1').click(function () {
+    $('#bpsRbtMainTable_wrapper').remove();
+    $.when(renderTableRBT()).then(function () {
+        initDataTableRBT();
+        $('#bpsRbtT1 *').css('display', '');
+    });
+});
 
 function renderTableRBT() {
 
     let oTable = $('#bpsRbtMainTable');
 
     //render head
-    let sHtml = '<thead><tr class="table-dark">';
+    let sHtml = '<table class="table table-responsive bpsScrollable" id="bpsRbtMainTable">'
+    sHtml += '<thead><tr class="table-dark">';
     sHtml += '<th scope="col" class="align-middle">Date</th>';
     sHtml += '<th scope="col" class="align-middle">RBT Total Burned</th>';
     sHtml += '<th scope="col" class="align-middle">RBT Burned at Day</th>';
@@ -26,7 +36,8 @@ function renderTableRBT() {
         sHtml += renderRowRBT(oDataRBT[i], false);
     }
 
-    oTable.html(sHtml);
+    sHtml += '</table>';
+    $('#bpsRbtT1').append(sHtml);
 }
 
 function renderRowRBT(oRow, bFirst) {
@@ -49,8 +60,7 @@ function renderRowRBT(oRow, bFirst) {
 }
 
 function initDataTableRBT() {
-    debugger;
-    let oTable = $('#bpsRbtMainTable').DataTable({
+    $('#bpsRbtMainTable').DataTable({
         columnDefs: [{
                 targets: 1,
                 type: 'num-fmt'
@@ -100,19 +110,9 @@ function initDataTableRBT() {
             [0, 'dsc']
         ]
     });
-
-    oTable.rows.add(oDataRBT);
-    oTableRBT = $('#bpsRbtMainTable').DataTable().data();
 }
 
-/*$('#bpsMenuItemRbtT1').click(function () {
-    $('#bpsRbtMainTable').DataTable().clear();
-    $('#bpsRbtMainTable').DataTable().destroy();
-    initTableRBT();
-    $('#bpsRbtMainTable').DataTable().clear().rows.add(oTableRBT).draw();
-});
-
-$('#bpsMenuItemRbsT1').click(function () {
+/*$('#bpsMenuItemRbsT1').click(function () {
     $('#bpsRbsMainTable').DataTable().clear();
     $('#bpsRbsMainTable').DataTable().destroy();
     initTableRBS();

@@ -207,9 +207,8 @@
                             </div>
                         </div>
 
-                        <div id="bpsRbsT1" class="bpsTarget">
-                            <h1 id="bpsRbsHdlT1" class="h2">RBT Burned Daily</h1>
-                            <table class="table" id="bpsRbtMainTable"></table>
+                        <div id="bpsRbtT1" class="bpsTarget">
+                            <h1 id="bpsRbtHdlT1" class="h2">RBT Burned Daily</h1>
                             <div class="spinner-border text-secondary bpsSpinnerRBT" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>

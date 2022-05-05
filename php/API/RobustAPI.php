@@ -10,6 +10,8 @@ class RobustAPI extends API implements Constants
 {
     public static function requestDataRBT()
     {
+        set_time_limit(1);
+
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, Constants::API_ROBUST_RBT);
@@ -36,6 +38,8 @@ class RobustAPI extends API implements Constants
 
     public static function requestDataRBS()
     {
+        set_time_limit(1);
+
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, Constants::API_ROBUST_RBS);

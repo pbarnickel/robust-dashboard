@@ -56,6 +56,5 @@ $('.bpsMenuItem').click(function () {
 });
 
 $('#bpsMenuItemHome').click(function () {
-    var sNewHtml = $('#bpsHome').html().replaceAll(' style="display: none;"', '');
-    $('#bpsHome').html(sNewHtml);
+    $('#bpsHome *').css('display', '');
 });
