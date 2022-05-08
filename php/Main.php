@@ -6,6 +6,7 @@ use BPS\RobustDashboard\Constants;
 use BPS\RobustDashboard\API\DatabaseAPI;
 use BPS\RobustDashboard\API\RobustAPI;
 use BPS\RobustDashboard\Model\EntryRBT;
+use BPS\RobustDashboard\Model\EntryRBS;
 use BPS\RobustDashboard\Model\HistoryRBT;
 use BPS\RobustDashboard\Model\HistoryRBS;
 
@@ -51,7 +52,7 @@ class Main implements Constants
         $history = $this->databaseAPI->readHistory(Constants::DB_RBS_SELECT_HISTORY);
         if ($history->num_rows > 0) {
             while ($row = $history->fetch_assoc()) {
-                $entry = new EntryRBT(
+                $entry = new EntryRBS(
                     $row[Constants::DB_ENTRY_ID],
                     $row[Constants::DB_ENTRY_DATE],
                     $row[Constants::DB_ENTRY_RBS_TOTAL_SUPPLY],
@@ -94,7 +95,7 @@ class Main implements Constants
         $lastEntry = $this->historyRBS->getLastEntry();
         $entry = $this->databaseAPI->updateHistoryRBS($lastEntry, $this->currentRBS);
         if ($entry) {
-            $this->historyRBT->addNewEntry($entry);
+            $this->historyRBS->addNewEntry($entry);
         }
     }
 

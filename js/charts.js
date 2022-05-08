@@ -312,12 +312,12 @@ function initChartRbtC6() {
         type: 'line',
         data: data,
         options: {
-            scales: {
+            /*scales: {
                 y: {
                     max: 100000,
                     min: 0,
                 }
-            },
+            },*/
             plugins: {
                 legend: {
                     display: true
@@ -359,12 +359,12 @@ function initChartRbtC7() {
         type: 'line',
         data: data,
         options: {
-            scales: {
+            /*scales: {
                 y: {
                     max: 10000000,
                     min: 0,
                 }
-            },
+            },*/
             plugins: {
                 legend: {
                     display: false
@@ -407,12 +407,12 @@ function initChartRbtC8() {
         type: 'line',
         data: data,
         options: {
-            scales: {
+            /*scales: {
                 y: {
                     max: 20000,
                     min: 0,
                 }
-            },
+            },*/
             plugins: {
                 legend: {
                     display: false
@@ -544,12 +544,12 @@ function initChartRbsC3() {
         type: 'line',
         data: data,
         options: {
-            scales: {
+            /*scales: {
                 y: {
                     max: 1000000,
                     min: 0,
                 }
-            },
+            },*/
             plugins: {
                 legend: {
                     display: false
@@ -592,12 +592,12 @@ function initChartRbsC4() {
         type: 'line',
         data: data,
         options: {
-            scales: {
+            /*scales: {
                 y: {
                     max: 20000,
                     min: 0,
                 }
-            },
+            },*/
             plugins: {
                 legend: {
                     display: false

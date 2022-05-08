@@ -5,10 +5,9 @@ function initTableRBT() {
 }
 
 function initTableRBS() {
-    $.when(renderTableRBS()).then(function () {
-        initDataTableRBS();
-        oTableRBS = $("#bpsRbsMainTable").DataTable();
-    });
+    renderTableRBS();
+    initDataTableRBS();
+    oTableRBS = $("#bpsRbsMainTable").DataTable();
 }
 
 $('#bpsMenuItemRbtT1').click(function () {

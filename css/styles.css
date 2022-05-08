@@ -175,7 +175,8 @@ footer a:hover {
     scrollbar-width: none;
 }
 
-.bpsSpinnerRBT {
+.bpsSpinnerRBT,
+.bpsSpinnerRBS {
     margin-left: 30%;
     width: 100px;
     height: 100px;

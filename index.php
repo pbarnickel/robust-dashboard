@@ -272,23 +272,37 @@
 
                         <div id="bpsRbsT1" class="bpsTarget">
                             <h1 id="bpsHdlRbsT1" class="h2">RBS Total Supply Daily</h1>
-                            <table class="table" id="bpsRbsMainTable"></table>
+                            <div class="spinner-border text-secondary bpsSpinnerRBS" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                         <div id="bpsRbsC1" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsC1" class="h2">RBS Total Supply</h1>
                             <canvas id="idChartRbsC1"></canvas>
+                            <div class="spinner-border text-secondary bpsSpinnerRBS" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                         <div id="bpsRbsC2" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsC2" class="h2">RBS Total Supply Daily</h1>
                             <canvas id="idChartRbsC2"></canvas>
+                            <div class="spinner-border text-secondary bpsSpinnerRBS" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                         <div id="bpsRbsC3" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsC3" class="h2">RBS Market Cap Daily</h1>
                             <canvas id="idChartRbsC3"></canvas>
+                            <div class="spinner-border text-secondary bpsSpinnerRBS" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                         <div id="bpsRbsC4" class="bpsTarget bpsHidden">
                             <h1 id="bpsHdlRbsC4" class="h2">RBS Holders Monthly</h1>
                             <canvas id="idChartRbsC4"></canvas>
+                            <div class="spinner-border text-secondary bpsSpinnerRBS" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
 
                         <div id="bpsImpressum" class="bpsTarget bpsHidden">
