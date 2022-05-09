@@ -22,19 +22,19 @@ function initMenuCardsRBT() {
     var oData = oDataRBT[0];
     var iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oData.TotalBurned;
     var iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
-    $('#bpsRbtTotalBurned').html(parseFloat(oData.TotalBurned).toLocaleString() + " RBT");
-    $('#bpsRbtCurrentSupply').html(iCurrentSupply.toLocaleString() + " RBT");
-    $('#bpsRbtAvailableSupply').html(iAvailableSupply.toLocaleString() + " RBT");
-    $('#bpsRbtMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
-    $('#bpsRbtHolders').html(oData.Holders);
+    $('#bpsRbtTotalBurned').html(formatNumber(oData.TotalBurned) + " RBT");
+    $('#bpsRbtCurrentSupply').html(formatNumber(iCurrentSupply) + " RBT");
+    $('#bpsRbtAvailableSupply').html(formatNumber(iAvailableSupply) + " RBT");
+    $('#bpsRbtMarketCap').html(formatNumber(oData.MarketCap) + " $");
+    $('#bpsRbtHolders').html(formatNumber(oData.Holders));
 }
 
 function initMenuCardsRBS() {
     var oData = oDataRBS[0];
-    $('#bpsRbsTotalSupply').html(parseFloat(oData.TotalSupply).toLocaleString() + " RBS");
-    $('#bpsRbsDifferenceSupply').html(parseFloat(oData.Supply).toLocaleString() + " RBS");
-    $('#bpsRbsMarketCap').html(parseFloat(oData.MarketCap).toLocaleString() + " USD");
-    $('#bpsRbsHolders').html(oData.Holders);
+    $('#bpsRbsTotalSupply').html(formatNumber(oData.TotalSupply) + " RBS");
+    $('#bpsRbsDifferenceSupply').html(formatNumber(oData.Supply) + " RBS");
+    $('#bpsRbsMarketCap').html(formatNumber(oData.MarketCap) + " $");
+    $('#bpsRbsHolders').html(formatNumber(oData.Holders));
 }
 
 // chart 1 - RBT burned daily
