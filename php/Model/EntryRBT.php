@@ -45,7 +45,7 @@ class EntryRBT extends Entry implements \JsonSerializable
             'TotalBurned' => bcadd($this->totalBurned, '0', 2),
             'Burned' => bcadd($this->burned, '0', 2),
             'MarketCap' => bcadd($this->marketCap, '0', 2),
-            'Holders' => bcadd($this->holders, '0', 2)
+            'Holders' => bcadd($this->holders, '0', 0)
         ];
     }
 }

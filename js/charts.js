@@ -101,6 +101,12 @@ function initChartRbtC2() {
         type: 'line',
         data: data,
         options: {
+            scales: {
+                y: {
+                    max: 100000,
+                    min: 0,
+                }
+            },
             plugins: {
                 legend: {
                     display: false
