@@ -8,7 +8,7 @@
     <link href="/css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="/css/lib/datatables.min.css" rel="stylesheet">
     <link href="/css/lib/dashboard.min.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/styles.min.css" rel="stylesheet">
     <link rel="icon" href="/media/favicon.png">
 </head>
 
@@ -325,10 +325,10 @@
     <script src="/js/lib/chart.min.js" async></script>
     <script src="/js/data/RBT.json" async></script>
     <script src="/js/data/RBS.json" async></script>
-    <script src="/js/tables.js" async></script>
-    <script src="/js/charts.js" async></script>
-    <script src="/js/requests.js" async></script>
-    <script src="/js/main.js" async></script>
+    <script src="/js/tables.min.js" async></script>
+    <script src="/js/charts.min.js" async></script>
+    <script src="/js/requests.min.js" async></script>
+    <script src="/js/main.min.js" async></script>
 </body>
 
 </html>
