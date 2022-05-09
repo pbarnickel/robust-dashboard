@@ -7,20 +7,22 @@ function requestData() {
     request.done(function (sMsg) {
         $.getJSON("/js/data/RBT.json", function (oJSON) {
             oDataRBT = oJSON;
-            $('.bpsSpinnerRBT').remove();
             $.when(initTableRBT()).then(function () {
                 $('#bpsRbtMainTable').parent().addClass('table-responsive');
+                $.when(initChartsRBT()).then(function (){
+                    $('#bpsSpinnerRBT').fadeOut();
+                });
             });
-            initChartsRBT();
-        });
 
-        $.getJSON("/js/data/RBS.json", function (oJSON) {
-            oDataRBS = oJSON;
-            $('.bpsSpinnerRBS').remove();
-            $.when(initTableRBS()).then(function () {
-                $('#bpsRbsMainTable').parent().addClass('table-responsive');
+            $.getJSON("/js/data/RBS.json", function (oJSON) {
+                oDataRBS = oJSON;
+                $.when(initTableRBS()).then(function () {
+                    $('#bpsRbsMainTable').parent().addClass('table-responsive');
+                    $.when(initChartsRBS()).then(function (){
+                        $('#bpsSpinnerRBS').fadeOut();
+                    });
+                });
             });
-            initChartsRBS();
         });
     });
 

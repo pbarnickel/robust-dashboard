@@ -175,13 +175,10 @@ footer a:hover {
     scrollbar-width: none;
 }
 
-.bpsSpinnerRBT,
-.bpsSpinnerRBS {
-    margin-left: 30%;
-    width: 100px;
-    height: 100px;
-    border-width: 1px;
-    margin-top: 50px;
+.bpsSpinner {
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
