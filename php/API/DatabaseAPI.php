@@ -34,16 +34,11 @@ class DatabaseAPI extends API implements Constants
 
         $date = date('d.m.Y', strtotime("-1 days"));
         $totalBurned = $current->getTotalBurned();
-        $totalBurned = bcadd($totalBurned, '0', 2);
+        $burned = $totalBurned;
         if ($lastEntry) {
-            $lastBurned = bcadd($lastEntry->getTotalBurned(), '0', 2);
-            $burned = $totalBurned - $lastBurned;
-        } else {
-            $burned = $totalBurned;
+            $burned = $totalBurned - $lastEntry->getTotalBurned();
         }
-        $burned = bcadd($burned, '0', 2);
         $marketCap = $current->getMarketCap();
-        $marketCap = bcadd($marketCap, '0', 2);
         $holders = $current->getHolders();
 
         $query = Constants::DB_RBT_INSERT_ENTRY . ' ("' . $date . '", ' . $totalBurned . ', ' . $burned . ', ' . $marketCap . ', ' . $holders . ')';
@@ -66,16 +61,11 @@ class DatabaseAPI extends API implements Constants
 
         $date = date('d.m.Y', strtotime("-1 days"));
         $totalSupply = $current->getTotalSupply();
-        $totalSupply = bcadd($totalSupply, '0', 2);
+        $supply = $totalSupply;
         if ($lastEntry) {
-            $lastSupply = bcadd($lastEntry->getTotalSupply(), '0', 2);
-            $supply = $totalSupply - $lastSupply;
-        } else {
-            $supply = $totalSupply;
+            $supply = $totalSupply - $lastEntry->getTotalSupply();
         }
-        $supply = bcadd($supply, '0', 2);
         $marketCap = $current->getMarketCap();
-        $marketCap = bcadd($marketCap, '0', 2);
         $holders = $current->getHolders();
 
         $query = Constants::DB_RBS_INSERT_ENTRY . ' ("' . $date . '", ' . $totalSupply . ', ' . $supply . ', ' . $marketCap . ', ' . $holders . ')';

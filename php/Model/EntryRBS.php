@@ -42,10 +42,10 @@ class EntryRBS extends Entry implements \JsonSerializable
     {
         return [
             'Date' => $this->date,
-            'TotalSupply' => $this->totalSupply,
-            'Supply' => $this->supply,
-            'MarketCap' => $this->marketCap,
-            'Holders' => $this->holders
+            'TotalSupply' => bcadd($this->totalSupply, '0', 2),
+            'Supply' => bcadd($this->supply, '0', 2),
+            'MarketCap' => bcadd($this->marketCap, '0', 2),
+            'Holders' => bcadd($this->holders, '0', 2)
         ];
     }
 }
