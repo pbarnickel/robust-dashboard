@@ -344,7 +344,7 @@ function initChartRbtC7() {
     var aData = [];
 
     for (var i = oDataRBT.length - 1; i > -1; i--) {
-        if (oDataRBT[i].MarketCap) {
+        if (oDataRBT[i].MarketCap !== '0.00') {
             aData.push({
                 x: oDataRBT[i].Date,
                 y: oDataRBT[i].MarketCap
@@ -392,7 +392,7 @@ function initChartRbtC8() {
     var aData = [];
 
     for (var i = oDataRBT.length - 1; i > -1; i--) {
-        if (oDataRBT[i].Holders) {
+        if (oDataRBT[i].Holders !== '0') {
             aData.push({
                 x: oDataRBT[i].Date,
                 y: oDataRBT[i].Holders.replace(',', '')
