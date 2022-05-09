@@ -503,12 +503,12 @@ function initChartRbsC2() {
         type: 'line',
         data: data,
         options: {
-            scales: {
+            /*scales: {
                 y: {
                     max: 106050,
                     min: 0,
                 }
-            },
+            },*/
             plugins: {
                 legend: {
                     display: false
