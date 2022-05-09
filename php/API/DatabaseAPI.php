@@ -32,7 +32,7 @@ class DatabaseAPI extends API implements Constants
     {
         $this->openConnection();
 
-        $date = date('d.m.Y', strtotime("-1 days"));
+        $date = date('d.m.Y');
         $totalBurned = $current->getTotalBurned();
         $burned = $totalBurned;
         if ($lastEntry) {
@@ -59,7 +59,7 @@ class DatabaseAPI extends API implements Constants
     {
         $this->openConnection();
 
-        $date = date('d.m.Y', strtotime("-1 days"));
+        $date = date('d.m.Y');
         $totalSupply = $current->getTotalSupply();
         $supply = $totalSupply;
         if ($lastEntry) {
