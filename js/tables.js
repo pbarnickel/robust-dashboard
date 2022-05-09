@@ -96,8 +96,16 @@ function renderRowRBT(oRow, bFirst) {
     sHtml += '<td class="align-middle">' + formatNumber(iCurrentSupply.toFixed(2)) + '</td>';
     let iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
     sHtml += '<td class="align-middle">' + formatNumber(iAvailableSupply.toFixed(2)) + '</td>';
-    sHtml += '<td class="align-middle">' + formatNumber(oRow.MarketCap) + '</td>';
-    sHtml += '<td class="align-middle">' + formatNumber(oRow.Holders) + '</td></tr>';
+    let iMarketCap = formatNumber(oRow.MarketCap);
+    if(iMarketCap === '0.00'){
+        iMarketCap = '';
+    }
+    sHtml += '<td class="align-middle">' + iMarketCap + '</td>';
+    let iHolders = formatNumber(oRow.Holders);
+    if(iHolders === '0'){
+        iHolders = '';
+    }
+    sHtml += '<td class="align-middle">' + iHolders + '</td></tr>';
     return sHtml;
 }
 
