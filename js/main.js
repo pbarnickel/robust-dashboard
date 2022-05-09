@@ -23,22 +23,6 @@ function convertDate(sDate) {
     return sDate;
 }
 
-function convertFloat(sFloat) {
-    if (sFloat) {
-        return parseFloat(sFloat).toLocaleString({
-            maximumFractionDigits: 2
-        });
-    }
-    return sFloat;
-}
-
-function convertInt(sInt) {
-    if (sInt) {
-        return parseInt(sInt).toLocaleString();
-    }
-    return sInt;
-}
-
 function initHeadlines() {
     var iCurrentYear = new Date().getFullYear();
     $('#bpsHdlRbtC3').html('RBT Burned Daily ' + iCurrentYear);

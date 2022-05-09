@@ -86,14 +86,14 @@ function renderRowRBT(oRow, bFirst) {
         sHtml = '<tr>';
     }
     sHtml += '<th scope="row">' + convertDate(oRow.Date) + '</th>';
-    sHtml += '<td class="align-middle">' + convertFloat(oRow.TotalBurned) + '</td>';
-    sHtml += '<td class="align-middle">' + convertFloat(oRow.Burned) + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.TotalBurned + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.Burned + '</td>';
     let iCurrentSupply = RBT_INIT_TOTAL_SUPPLY - oRow.TotalBurned;
-    sHtml += '<td class="align-middle">' + convertFloat(iCurrentSupply) + '</td>';
+    sHtml += '<td class="align-middle">' + iCurrentSupply.toFixed(2) + '</td>';
     let iAvailableSupply = iCurrentSupply - RBT_LOCKED_SUPPLY;
-    sHtml += '<td class="align-middle">' + convertFloat(iAvailableSupply) + '</td>';
-    sHtml += '<td class="align-middle">' + convertFloat(oRow.MarketCap) + '</td>';
-    sHtml += '<td class="align-middle">' + convertInt(oRow.Holders) + '</td></tr>';
+    sHtml += '<td class="align-middle">' + iAvailableSupply.toFixed(2) + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.MarketCap + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.Holders + '</td></tr>';
     return sHtml;
 }
 
@@ -105,10 +105,10 @@ function renderRowRBS(oRow, bFirst) {
         sHtml = '<tr>';
     }
     sHtml += '<th scope="row">' + convertDate(oRow.Date) + '</th>';
-    sHtml += '<td class="align-middle">' + convertFloat(oRow.TotalSupply) + '</td>';
-    sHtml += '<td class="align-middle">' + convertFloat(oRow.Supply) + '</td>';
-    sHtml += '<td class="align-middle">' + convertFloat(oRow.MarketCap) + '</td>';
-    sHtml += '<td class="align-middle">' + convertInt(oRow.Holders) + '</td></tr>';
+    sHtml += '<td class="align-middle">' + oRow.TotalSupply + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.Supply + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.MarketCap + '</td>';
+    sHtml += '<td class="align-middle">' + oRow.Holders + '</td></tr>';
     return sHtml;
 }
 
