@@ -28,3 +28,17 @@ function requestData() {
         p("Request failed for loading data");
     });
 }
+
+function updateData() {
+    var request = $.ajax({
+        url: "/php/scripts/updateData.php",
+        method: "GET",
+    });
+
+    request.done(function (sMsg) {
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        p("Request failed for updating data");
+    });
+}
