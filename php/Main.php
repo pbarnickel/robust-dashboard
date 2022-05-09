@@ -69,7 +69,11 @@ class Main implements Constants
     {
         $lastEntry = $this->historyRBT->getLastEntry();
         $current = RobustAPI::requestDataRBT();
-        //TODO: calc and set burned
+        $burned = $current->getTotalBurned();
+        if ($lastEntry) {
+            $burned = $burned - $lastEntry->getTotalBurned();
+        }
+        $current->setBurned($burned);
         $this->currentRBT = $current;
     }
 
@@ -77,7 +81,11 @@ class Main implements Constants
     {
         $lastEntry = $this->historyRBS->getLastEntry();
         $current = RobustAPI::requestDataRBS();
-        //TODO: calc and set burned
+        $supply = $current->getTotalSupply();
+        if ($lastEntry) {
+            $supply = $supply - $lastEntry->getTotalSupply();
+        }
+        $current->setSupply($supply);
         $this->currentRBS = $current;
     }
 
